@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-//@RequestMapping("/doctor")
+@RequestMapping("/doctor")
 @RequiredArgsConstructor
 public class DoctorController {
     @Autowired
@@ -37,7 +37,6 @@ public class DoctorController {
 
 
     @GetMapping("/all")
-//    @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<List> getAll() {
         System.out.println("salam");
         List<Doctor>doctors=doctorService.getAllDoctor();
