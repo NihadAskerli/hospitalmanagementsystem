@@ -22,9 +22,7 @@ public class DoctorController {
     @CrossOrigin
     @GetMapping("/all")
     public ResponseEntity<List> getAll() {
-        System.out.println("salam");
-        List<Doctor> doctors = doctorService.getAllDoctor();
-        return ResponseEntity.ok(doctors);
+        return ResponseEntity.ok(doctorService.getAllDoctor());
     }
 
     @CrossOrigin
