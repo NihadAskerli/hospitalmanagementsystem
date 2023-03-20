@@ -30,15 +30,9 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public Doctor save(Doctor doctor) {
-        //hospital.id
-        //        doctor.setHospital(hospitalService.getById());
         return doctorRepository.save(doctor);
     }
 
-//    @Override
-//    public void search(String name, int page, int size) {
-//
-//    }
 
     @Override
     public void delete(long id) {
@@ -61,12 +55,4 @@ public class DoctorServiceImpl implements DoctorService {
 //        return doctorRepository.save(doctor);
 //    }
 
-//    @Override
-//    public void update(long id, String cardId) {
-//
-//        Doctor doctor = doctorRepository.findById(id).get();
-//        doctor.setCardId(cardId);
-//        doctorRepository.save(doctor);
-//
-//    }
 }

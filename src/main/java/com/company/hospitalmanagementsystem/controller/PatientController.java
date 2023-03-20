@@ -19,16 +19,19 @@ public class PatientController {
     @Autowired
     PatientServiceImpl patientService;
 
+    @CrossOrigin
     @GetMapping("/all")
     public ResponseEntity<List> getAllAssistant() {
         return ResponseEntity.ok(patientService.getAllPatient());
     }
 
-    @PostMapping("/add")
-    public ResponseEntity<AssistantDto> addAssistant(@RequestBody String patient) {
+    @CrossOrigin
+    @PostMapping
+    public ResponseEntity<PatientDto> save(@RequestBody String patient) {
         patientService.save(objectMapper.convertValue(objectMapper.convertValue(patient, PatientDto.class), Patient.class));
-        return ResponseEntity.ok(objectMapper.convertValue(patient, AssistantDto.class));
+        return ResponseEntity.ok(objectMapper.convertValue(patient, PatientDto.class));
     }
+
 
 //    @PutMapping("/update")
 //    public void update(@RequestBody String assistant) {

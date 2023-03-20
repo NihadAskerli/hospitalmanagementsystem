@@ -19,24 +19,22 @@ public class DoctorController {
     public DoctorServiceImpl doctorService;
     private final ObjectMapper objectMapper;
 
-
+    @CrossOrigin
     @GetMapping("/all")
     public ResponseEntity<List> getAll() {
         System.out.println("salam");
-        List<Doctor>doctors=doctorService.getAllDoctor();
+        List<Doctor> doctors = doctorService.getAllDoctor();
         return ResponseEntity.ok(doctors);
     }
+
+    @CrossOrigin
     @GetMapping("/{finCode}")
     public ResponseEntity<DoctorDto> getByFinCode(@PathVariable String finCode) {
-      DoctorDto doctor=objectMapper.convertValue( doctorService.getByFinCode(finCode),DoctorDto.class);
-        System.out.println(doctor);
+        DoctorDto doctor = objectMapper.convertValue(doctorService.getByFinCode(finCode), DoctorDto.class);
         return ResponseEntity.ok(doctor);
     }
-    @GetMapping("/demo")
-    public ResponseEntity<String> getDemo() {
-        return ResponseEntity.ok("Nihad");
-    }
 
+    @CrossOrigin
     @PostMapping
     public ResponseEntity<DoctorDto> save(@RequestBody String doctor) {
         doctorService.save(objectMapper.convertValue(objectMapper.convertValue(doctor, DoctorDto.class),
@@ -44,16 +42,8 @@ public class DoctorController {
         return ResponseEntity.ok(objectMapper.convertValue(doctor, DoctorDto.class));
     }
 
-//    @GetMapping("/branch")
-//    public List<String> getBranch() {
-//        List<String> branchList = new ArrayList<>();
-//
-//        for (Doctor doctor : doctorService.getAllDoctor()) {
-//            branchList.add(doctor.getDepartment());
-//        }
-//        return branchList;
-//    }
 
+    @CrossOrigin
     @DeleteMapping("/{id}")
     public void delete(@PathVariable long id) {
         doctorService.delete(id);
@@ -67,7 +57,7 @@ public class DoctorController {
 //
 //    }
 
-
+//    @CrossOrigin
 //    @PutMapping("/{finCode}")
 //    public ResponseEntity<DoctorDto> update(@PathVariable String finCode, @RequestBody String doctor) {
 //        return ResponseEntity.ok(objectMapper.convertValue(doctorService.update(finCode, objectMapper
@@ -75,7 +65,6 @@ public class DoctorController {
 //                DoctorDto.class));
 //
 //    }
-
 
 
 }
