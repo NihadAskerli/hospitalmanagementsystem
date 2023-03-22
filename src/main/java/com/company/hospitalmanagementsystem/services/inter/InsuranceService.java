@@ -5,13 +5,8 @@ import com.company.hospitalmanagementsystem.models.Insurance;
 import java.util.List;
 
 public interface InsuranceService {
-    List<Insurance> getAllInsurance();
 
-    Insurance getById(long id);
 
-    Insurance save(Insurance insurance);
+    Insurance getByFinCode(String id);
 
-    void delete(long id);
-
-    void update(long id);
 }

@@ -1,25 +1,19 @@
-package com.company.hospitalmanagementsystem.models;
+package com.company.hospitalmanagementsystem.dto;
 
-import jakarta.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
-
-@Entity
-@Table(name = "payments")
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-public class Payment {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_payments")
-    @SequenceGenerator(
-            name = "seq_payments", allocationSize = 1
-    )
+public class PaymentDto {
+
     private Long id;
     private String cardId;
     private BigDecimal pay;

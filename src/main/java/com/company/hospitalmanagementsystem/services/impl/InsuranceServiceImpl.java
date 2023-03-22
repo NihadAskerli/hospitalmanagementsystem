@@ -13,28 +13,9 @@ import java.util.List;
 public class InsuranceServiceImpl implements InsuranceService {
     private final InsuranceRepository insuranceRepository;
 
-    @Override
-    public List<Insurance> getAllInsurance() {
-        return insuranceRepository.findAll();
-    }
 
     @Override
-    public Insurance getById(long id) {
-        return insuranceRepository.findById(id).get();
-    }
-
-    @Override
-    public Insurance save(Insurance insurance) {
-        return insuranceRepository.save(insurance);
-    }
-
-    @Override
-    public void delete(long id) {
-        insuranceRepository.delete(insuranceRepository.findById(id).get());
-    }
-
-    @Override
-    public void update(long id) {
-
+    public Insurance getByFinCode(String id) {
+        return insuranceRepository.getByFinCode(id);
     }
 }

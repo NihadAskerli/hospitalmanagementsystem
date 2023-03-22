@@ -38,6 +38,8 @@ public class WebSecurityConfig {
 //                        requestMatchers("/auth/register").permitAll().
                         requestMatchers("/auth/**").permitAll().
                         requestMatchers("/doctor/**").permitAll().
+                        requestMatchers("/examination/**").permitAll().
+                        requestMatchers("/queue/**").permitAll().
                         requestMatchers("/test/**").hasRole("ADMIN").
                         anyRequest().authenticated());
         return http.build();

@@ -1,9 +1,17 @@
 package com.company.hospitalmanagementsystem.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "examinations")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Examination {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_salary")
@@ -15,5 +23,5 @@ public class Examination {
     private String name;
     private String surname;
     private String pastTreatment;
-    private String date;
+    private LocalDate date;
 }
