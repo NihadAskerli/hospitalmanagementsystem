@@ -4,14 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ExaminationDto {
-    private String doctorFinCode;
-    private String name;
-    private String surname;
-    private String pastTreatment;
+public class QueueDto {
+    private ExaminationDto examinationDto;
+    private String customFinCode;
+    private PaymentDto paymentDto;
 
 }

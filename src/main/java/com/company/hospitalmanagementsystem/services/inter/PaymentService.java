@@ -5,13 +5,10 @@ import com.company.hospitalmanagementsystem.models.Payment;
 import java.util.List;
 
 public interface PaymentService {
-    List<Payment> getAllPayment();
 
-    Payment getById(long id);
 
-    Payment save(Payment payment);
+    Payment getByFinCode(String finCode);
 
     void delete(long id);
 
-    void update(long id);
 }
