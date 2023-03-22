@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @RestController
 @RequestMapping("/patient")
 @RequiredArgsConstructor
@@ -32,14 +33,11 @@ public class PatientController {
         return ResponseEntity.ok(objectMapper.convertValue(patient, PatientDto.class));
     }
 
+    @CrossOrigin
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable long id) {
+        patientService.delete(id);
+    }
 
-//    @PutMapping("/update")
-//    public void update(@RequestBody String assistant) {
-//        AssistantDto assistantDto = objectMapper.convertValue(assistant, AssistantDto.class);
-//        assistantService.updateCardId(assistantDto.getCardId(), assistantDto.getFinCode());
-//    }
-//    @DeleteMapping("/remove{id}")
-//    public void deleteById(@PathVariable("id") String finCode) {
-//        assistantService.delete(finCode);
-//    }
+
 }
