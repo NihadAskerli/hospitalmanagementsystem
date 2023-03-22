@@ -55,14 +55,16 @@ public class DoctorController {
 //
 //    }
 
-//    @CrossOrigin
-//    @PutMapping("/{finCode}")
-//    public ResponseEntity<DoctorDto> update(@PathVariable String finCode, @RequestBody String doctor) {
-//        return ResponseEntity.ok(objectMapper.convertValue(doctorService.update(finCode, objectMapper
-//                        .convertValue(objectMapper.convertValue(doctor, DoctorDto.class), Doctor.class)),
-//                DoctorDto.class));
-//
-//    }
+    @CrossOrigin
+    @PutMapping("/{finCode}")
+    public void update(@PathVariable String finCode, @RequestBody String doctor) {
+
+        doctorService.update(finCode, objectMapper
+                .convertValue(objectMapper
+                        .convertValue(doctor, DoctorDto.class), Doctor.class));
+
+
+    }
 
 
 }
