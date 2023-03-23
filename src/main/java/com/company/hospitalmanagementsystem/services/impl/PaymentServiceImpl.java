@@ -25,9 +25,6 @@ public class PaymentServiceImpl implements PaymentService {
     private static Logger logger = LogManager.getLogger(PaymentServiceImpl.class);
     private final PaymentRepository paymentRepository;
 
-
-
-
     public Payment payment(String finCode) {
         return paymentRepository.getByFinCode(finCode);
     }

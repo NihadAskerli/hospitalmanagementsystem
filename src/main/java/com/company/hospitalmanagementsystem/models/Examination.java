@@ -26,4 +26,5 @@ public class Examination {
     private LocalDate localDate;
     private String time;
     private String customFinCode;
+
 }

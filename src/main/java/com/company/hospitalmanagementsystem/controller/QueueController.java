@@ -33,19 +33,23 @@ public class QueueController {
     @PostMapping("/add")
     public ResponseEntity<String> queue(@RequestBody String queue) throws ParseException, JsonProcessingException {
         QueueDto queueDto = queueService.convertQueueDto(queue);
-        if (queueDto.getExaminationDto().getCustomFinCode() != null) {
-            if (insuranceService.getByFinCode(queueDto.getExaminationDto().getCustomFinCode()) == null) {
-                return ResponseEntity.ok("Sizin sigortaniz yoxdur");
-            }
-        }
         ExaminationDto examinationDto = queueDto.getExaminationDto();
         examinationDto.setLocalDate(queueService.convertDate(examinationDto.getLocalDate()));
         Examination examination = objectMapper.convertValue(examinationDto, Examination.class);
         if(examination.getLocalDate().compareTo(LocalDate.now())<0){
-            return ResponseEntity.ok("duzgun tarix daxil edin");
+            return ResponseEntity.ok("düzgün tarix daxil edin");
         }
         Payment payment = objectMapper.convertValue(queueDto.getPaymentDto(), Payment.class);
         payment.setDate(LocalDate.now());
+        if (queueDto.getExaminationDto().getCustomFinCode() != null && insuranceService.getByFinCode(queueDto.getExaminationDto().getCustomFinCode()) == null ) {
+
+                return ResponseEntity.ok("Sizin sıgortanız yoxdur");
+        }else if(queueDto.getExaminationDto().getCustomFinCode() == null && payment.getPay()==null ) {
+
+                return ResponseEntity.ok("Ödenişi ödeyin zəhmet olmasa");
+
+        }
+
         return ResponseEntity.ok(queueService.queueSave(examination, payment));
     }
 

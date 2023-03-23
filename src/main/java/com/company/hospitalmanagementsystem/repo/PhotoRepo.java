@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 public interface PhotoRepo extends JpaRepository<Photo, Long> {
     Photo getById(Long id);
 
-    //    List<Photo>getAll();
     @Modifying(clearAutomatically = true)
     @Transactional
     @Query(value = "update Photo p set p.url = :url where p.fileName = :fileName")

@@ -28,8 +28,11 @@ public class QueueService {
 
     @Transactional
     public String queueSave(Examination examination, Payment payment) {
-        if (cardId.matcher(payment.getCardId()).matches() && payment.getCardId().length() == 16 && payment.getFinCode().length() == 7 && payment.getPay().compareTo(BigDecimal.valueOf(30l)) == 0) {
+        if (payment.getPay()!=null && cardId.matcher(payment.getCardId()).matches() && payment.getCardId().length() == 16  && payment.getFinCode()!=null && payment.getFinCode().length() == 7 && payment.getPay().compareTo(BigDecimal.valueOf(30l)) == 0) {
             paymentRepository.save(payment);
+            examinationRepository.save(examination);
+            return null;
+        } else if (payment.getPay()==null) {
             examinationRepository.save(examination);
             return null;
         } else {
@@ -43,15 +46,12 @@ public class QueueService {
     }
     public String convertDate(String date) throws ParseException {
         String inputDate = date;
-        System.out.println(inputDate);
         SimpleDateFormat inputFormat = new SimpleDateFormat("MM/dd/yyyy");
         SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd");
         String outputDate = null;
         try {
             Date date1 = inputFormat.parse(inputDate);
             outputDate = outputFormat.format(date1);
-            System.out.println("Input date: " + inputDate);
-            System.out.println("Output date: " + outputDate);
         } catch (Exception e) {
             e.printStackTrace();
         }
