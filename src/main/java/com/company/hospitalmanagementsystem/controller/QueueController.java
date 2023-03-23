@@ -1,16 +1,22 @@
 package com.company.hospitalmanagementsystem.controller;
 
+import com.company.hospitalmanagementsystem.dto.ExaminationDto;
 import com.company.hospitalmanagementsystem.dto.QueueDto;
 import com.company.hospitalmanagementsystem.models.Examination;
 import com.company.hospitalmanagementsystem.models.Payment;
 import com.company.hospitalmanagementsystem.services.impl.InsuranceServiceImpl;
 import com.company.hospitalmanagementsystem.services.impl.QueueService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Date;
 
 @RestController
 @RequestMapping("/queue")
@@ -22,20 +28,27 @@ public class QueueController {
     QueueService queueService;
     @Autowired
     InsuranceServiceImpl insuranceService;
+
     @CrossOrigin
     @PostMapping("/add")
-    public String queue(@RequestBody String queue){
-        QueueDto queueDto=objectMapper.convertValue(queue,QueueDto.class);
-        if(queueDto.getCustomFinCode()!=null){
-            if(insuranceService.getByFinCode(queueDto.getCustomFinCode())==null){
-                return "Sizin portalda sigortaniz yoxdur";
+    public ResponseEntity<String> queue(@RequestBody String queue) throws ParseException, JsonProcessingException {
+        QueueDto queueDto = queueService.convertQueueDto(queue);
+        if (queueDto.getExaminationDto().getCustomFinCode() != null) {
+            if (insuranceService.getByFinCode(queueDto.getExaminationDto().getCustomFinCode()) == null) {
+                return ResponseEntity.ok("Sizin sigortaniz yoxdur");
             }
         }
-            Examination examination = objectMapper.convertValue(queueDto.getExaminationDto(), Examination.class);
-            examination.setDate(LocalDate.now());
-            Payment payment = objectMapper.convertValue(queueDto.getPaymentDto(), Payment.class);
-            payment.setDate(LocalDate.now());
-            return  queueService.queueSave(examination,payment);
-
+        ExaminationDto examinationDto = queueDto.getExaminationDto();
+        examinationDto.setLocalDate(queueService.convertDate(examinationDto.getLocalDate()));
+        Examination examination = objectMapper.convertValue(examinationDto, Examination.class);
+        if(examination.getLocalDate().compareTo(LocalDate.now())<0){
+            return ResponseEntity.ok("duzgun tarix daxil edin");
+        }
+        Payment payment = objectMapper.convertValue(queueDto.getPaymentDto(), Payment.class);
+        payment.setDate(LocalDate.now());
+        return ResponseEntity.ok(queueService.queueSave(examination, payment));
     }
+
+
+
 }
