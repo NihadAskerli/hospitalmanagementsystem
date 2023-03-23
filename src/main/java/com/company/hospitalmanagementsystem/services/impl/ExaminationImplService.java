@@ -18,15 +18,8 @@ import java.time.LocalDate;
 @RequiredArgsConstructor
 public class ExaminationImplService implements ExaminationService {
 
-    private final ExaminationRepository examinationRepository;
-    @Autowired
-    PaymentServiceImpl paymentService;
 
-    @Override
-    @Transactional
-    public void save(Examination examination) {
-        examination.setDate(LocalDate.now());
-        examinationRepository.save(examination);
-    }
+
+
 
 }

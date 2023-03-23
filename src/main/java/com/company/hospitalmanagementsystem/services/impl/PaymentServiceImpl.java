@@ -43,8 +43,5 @@ public class PaymentServiceImpl implements PaymentService {
         paymentRepository.delete(paymentRepository.findById(id).get());
     }
 
-//    @Override
-//    public void update(long id) {
-//
-//    }
+
 }
