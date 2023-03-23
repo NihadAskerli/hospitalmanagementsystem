@@ -28,11 +28,8 @@ public class QueueService {
 
     @Transactional
     public String queueSave(Examination examination, Payment payment) {
-        if (payment.getPay()!=null && cardId.matcher(payment.getCardId()).matches() && payment.getCardId().length() == 16  && payment.getFinCode()!=null && payment.getFinCode().length() == 7 && payment.getPay().compareTo(BigDecimal.valueOf(30l)) == 0) {
+        if (payment.getPay()!=null &&payment.getCardId()!=null && cardId.matcher(payment.getCardId()).matches() && payment.getCardId().length() == 16  && payment.getFinCode()!=null && payment.getFinCode().length() == 7 && payment.getPay().compareTo(BigDecimal.valueOf(30l)) == 0) {
             paymentRepository.save(payment);
-            examinationRepository.save(examination);
-            return null;
-        } else if (payment.getPay()==null) {
             examinationRepository.save(examination);
             return null;
         } else {

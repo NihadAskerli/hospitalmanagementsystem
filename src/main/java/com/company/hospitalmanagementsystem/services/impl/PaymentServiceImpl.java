@@ -40,5 +40,10 @@ public class PaymentServiceImpl implements PaymentService {
         paymentRepository.delete(paymentRepository.findById(id).get());
     }
 
+    @Override
+    public void save(Payment payment) {
+        paymentRepository.save(payment);
+    }
+
 
 }

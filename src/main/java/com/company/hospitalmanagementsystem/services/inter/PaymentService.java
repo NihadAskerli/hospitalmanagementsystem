@@ -11,4 +11,5 @@ public interface PaymentService {
 
     void delete(long id);
 
+    void save(Payment payment);
 }
