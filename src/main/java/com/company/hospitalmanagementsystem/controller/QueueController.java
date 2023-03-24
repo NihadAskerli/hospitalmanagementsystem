@@ -27,11 +27,11 @@ public class QueueController {
 
     private final ObjectMapper objectMapper;
 
-   private final QueueService queueService;
-   private final ExaminationImplService examinationImplService;
-   private  final PaymentServiceImpl paymentService;
+    private final QueueService queueService;
+    private final ExaminationImplService examinationImplService;
+    private  final PaymentServiceImpl paymentService;
 
-   private final InsuranceServiceImpl insuranceService;
+    private final InsuranceServiceImpl insuranceService;
 
     @CrossOrigin
     @PostMapping("/add")
@@ -46,10 +46,10 @@ public class QueueController {
             return ResponseEntity.ok("düzgün tarix daxil edin");
         }
         else if (examination.getCustomFinCode() != null && insuranceService.getByFinCode(examination.getCustomFinCode()) == null ) {
-                return ResponseEntity.ok("Sizin sıgortanız yoxdur");
+            return ResponseEntity.ok("Sizin sıgortanız yoxdur");
         }else if(queueDto.getExaminationDto().getCustomFinCode() == null && payment.getPay()==null ) {
 
-                return ResponseEntity.ok("Ödenişi ödeyin zəhmet olmasa");
+            return ResponseEntity.ok("Ödenişi ödeyin zəhmet olmasa");
 
         }  else if (examination.getCustomFinCode() != null && insuranceService.getByFinCode(examination.getCustomFinCode()) != null ) {
             examinationImplService.saveExamintaion(examination);
@@ -59,7 +59,5 @@ public class QueueController {
 
         return ResponseEntity.ok(queueService.queueSave(examination, payment));
     }
-
-
 
 }

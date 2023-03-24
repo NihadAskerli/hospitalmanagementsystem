@@ -15,7 +15,6 @@ import java.util.List;
 @NoArgsConstructor
 public class DoctorDto {
 
-    private Long id;
     private String branch;
     private String cardId;
     private String name;
@@ -30,6 +29,7 @@ public class DoctorDto {
 //    private Hospital hospital;
 //
 //    private List<Patient> patient;
+
 
 
 }
