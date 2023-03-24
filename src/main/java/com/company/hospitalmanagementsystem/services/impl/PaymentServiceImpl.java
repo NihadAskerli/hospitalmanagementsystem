@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -44,6 +45,18 @@ public class PaymentServiceImpl implements PaymentService {
     public void save(Payment payment) {
         paymentRepository.save(payment);
     }
+
+
+    @Override
+    public List<Payment> getAllPayment(LocalDate localDate) {
+        return paymentRepository.getAllByDateBefore(localDate);
+    }
+
+    @Override
+    public void deleteAllList(List<Payment> list) {
+        paymentRepository.deleteAll(list);
+    }
+
 
 
 }

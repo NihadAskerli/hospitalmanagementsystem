@@ -17,5 +17,5 @@ public class ExaminationDto {
     private String time;
     private String customFinCode;
 
-
 }
+

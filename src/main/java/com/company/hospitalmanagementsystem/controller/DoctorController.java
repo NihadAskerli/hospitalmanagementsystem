@@ -3,9 +3,11 @@ package com.company.hospitalmanagementsystem.controller;
 import com.company.hospitalmanagementsystem.dto.DoctorDto;
 import com.company.hospitalmanagementsystem.dto.ExaminationDto;
 import com.company.hospitalmanagementsystem.models.Doctor;
+
 import com.company.hospitalmanagementsystem.models.Examination;
 import com.company.hospitalmanagementsystem.services.impl.DoctorServiceImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +21,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DoctorController {
 
-    //    @Autowired
+
+
     private final DoctorServiceImpl doctorService;
+
     private final ObjectMapper objectMapper;
 
     @CrossOrigin
@@ -44,6 +48,7 @@ public class DoctorController {
         DoctorDto doctorDto = objectMapper.readValue(doctor, DoctorDto.class);
         return ResponseEntity.ok(objectMapper.convertValue(doctorService.save(objectMapper
                 .convertValue(doctorDto, Doctor.class)), DoctorDto.class));
+
     }
 
 
@@ -73,6 +78,8 @@ public class DoctorController {
     }
 
 
+
+    }
+
+
 }
-
-

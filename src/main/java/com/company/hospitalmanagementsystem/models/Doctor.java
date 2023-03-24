@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
@@ -28,6 +29,7 @@ public class Doctor {
     private String surname;
     private String finCode;
     private String unWorking;
+    private Integer examinationPay;
     @OneToOne
     @JoinColumn(name = "department_id")
     private Department department;

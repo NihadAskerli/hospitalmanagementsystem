@@ -39,6 +39,7 @@ public class AssitantController {
         AssistantDto assistantDto = objectMapper.readValue(assistant, AssistantDto.class);
         return ResponseEntity.ok(objectMapper.convertValue(assistantService.save(objectMapper
                 .convertValue(assistantDto, Assistant.class)), AssistantDto.class));
+
     }
     @CrossOrigin
     @PutMapping("/update")
