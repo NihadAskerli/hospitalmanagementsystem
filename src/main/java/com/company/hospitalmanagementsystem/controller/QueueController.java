@@ -54,7 +54,7 @@ public class QueueController {
         }  else if (examination.getCustomFinCode() != null && insuranceService.getByFinCode(examination.getCustomFinCode()) != null ) {
             examinationImplService.saveExamintaion(examination);
             paymentService.save(new Payment(null,null,null,examination.getCustomFinCode(),null));
-            return ResponseEntity.ok(null);
+            return ResponseEntity.ok("Növbəniz uöurla qeydə alındı");
         }
 
         return ResponseEntity.ok(queueService.queueSave(examination, payment));

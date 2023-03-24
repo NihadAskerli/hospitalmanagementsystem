@@ -36,8 +36,6 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(registry -> registry.
                         requestMatchers("/").permitAll().
                          requestMatchers("/auth/**").permitAll().
-                        requestMatchers("/assistant/**").permitAll().
-                        requestMatchers("/patient/**").permitAll().
                         requestMatchers("/doctor/**").permitAll().
                         requestMatchers("/examination/**").permitAll().
                         requestMatchers("/queue/**").permitAll().
