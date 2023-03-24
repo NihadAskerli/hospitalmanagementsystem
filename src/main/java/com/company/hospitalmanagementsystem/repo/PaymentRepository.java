@@ -13,6 +13,7 @@ import java.util.List;
 public interface PaymentRepository extends JpaRepository<Payment, Long> {
     Payment getByFinCode(String finCode);
 
+
     //    @Modifying(clearAutomatically = true)
 //    @Transactional
 //    @Query(value = "update Payment p set p.id = :id where p.finCode=:finCode")
@@ -21,3 +22,4 @@ public interface PaymentRepository extends JpaRepository<Payment, Long> {
     List<Payment>getAllByDateBefore(LocalDate localDate);
 
 }
+

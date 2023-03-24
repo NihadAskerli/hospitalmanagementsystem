@@ -1,8 +1,12 @@
 package com.company.hospitalmanagementsystem.controller;
 
 import com.company.hospitalmanagementsystem.dto.AssistantDto;
+import com.company.hospitalmanagementsystem.dto.DoctorDto;
+import com.company.hospitalmanagementsystem.dto.ExaminationDto;
 import com.company.hospitalmanagementsystem.models.Assistant;
+import com.company.hospitalmanagementsystem.models.Doctor;
 import com.company.hospitalmanagementsystem.services.impl.AssistantServiceImpl;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,10 +35,11 @@ public class AssitantController {
 
     @CrossOrigin
     @PostMapping
-    public ResponseEntity<AssistantDto> save(@RequestBody String assistant) {
-        assistantService.save(objectMapper.convertValue(objectMapper
-                .convertValue(assistant, AssistantDto.class), Assistant.class));
-        return ResponseEntity.ok(objectMapper.convertValue(assistant, AssistantDto.class));
+    public ResponseEntity<AssistantDto> save(@RequestBody String assistant) throws JsonProcessingException {
+        AssistantDto assistantDto = objectMapper.readValue(assistant, AssistantDto.class);
+        return ResponseEntity.ok(objectMapper.convertValue(assistantService.save(objectMapper
+                .convertValue(assistantDto, Assistant.class)), AssistantDto.class));
+
     }
     @CrossOrigin
     @PutMapping("/update")

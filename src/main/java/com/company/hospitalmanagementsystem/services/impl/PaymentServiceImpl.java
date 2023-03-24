@@ -46,6 +46,7 @@ public class PaymentServiceImpl implements PaymentService {
         paymentRepository.save(payment);
     }
 
+
     @Override
     public List<Payment> getAllPayment(LocalDate localDate) {
         return paymentRepository.getAllByDateBefore(localDate);
@@ -55,6 +56,7 @@ public class PaymentServiceImpl implements PaymentService {
     public void deleteAllList(List<Payment> list) {
         paymentRepository.deleteAll(list);
     }
+
 
 
 }

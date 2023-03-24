@@ -60,6 +60,4 @@ public class QueueController {
         return ResponseEntity.ok(queueService.queueSave(examination, payment));
     }
 
-
-
 }

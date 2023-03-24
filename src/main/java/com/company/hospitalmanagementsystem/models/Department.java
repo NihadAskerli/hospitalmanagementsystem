@@ -15,5 +15,5 @@ public class Department {
     private Long id;
     private String room;
     private String departmentName;
- ;
+
 }
