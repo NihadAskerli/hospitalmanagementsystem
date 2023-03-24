@@ -6,6 +6,7 @@ import com.company.hospitalmanagementsystem.services.inter.HospitalService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -19,8 +20,8 @@ public class HospitalServiceImpl implements HospitalService {
     }
 
     @Override
-    public Hospital getById(long id) {
-        return hospitalRepository.findById(id).get();
+    public Hospital getByName(String name) {
+        return hospitalRepository.getByName(name);
     }
 
     @Override
@@ -34,7 +35,9 @@ public class HospitalServiceImpl implements HospitalService {
     }
 
     @Override
-    public void update(long id) {
-
+    public void updateBudget(String name, BigDecimal budget) {
+        hospitalRepository.updateBudget(name,budget);
     }
+
+
 }

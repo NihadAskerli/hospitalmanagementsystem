@@ -13,5 +13,5 @@ public interface DoctorService {
 
     void delete(long id);
 
-    void update(long id);
+    void update(String finCode, Doctor doctor);
 }

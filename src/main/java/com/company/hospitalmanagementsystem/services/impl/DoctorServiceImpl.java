@@ -19,7 +19,7 @@ public class DoctorServiceImpl implements DoctorService {
     HospitalServiceImpl hospitalService;
 
     @Override
-    public  List<Doctor> getAllDoctor() {
+    public List<Doctor> getAllDoctor() {
         return doctorRepository.getAll();
     }
 
@@ -30,15 +30,9 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public Doctor save(Doctor doctor) {
-        //hospital.id
-        //        doctor.setHospital(hospitalService.getById());
         return doctorRepository.save(doctor);
     }
 
-//    @Override
-//    public void search(String name, int page, int size) {
-//
-//    }
 
     @Override
     public void delete(long id) {
@@ -46,27 +40,10 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public void update(long id) {
+    public void update(String finCode, Doctor doctor) {
+        doctorRepository.updateDoctor(finCode, doctor.getCardId());
 
     }
 
-//    @Override
-//    public Doctor update(String finCode, Doctor doctor) {
-//        List<Doctor> doctorList = doctorRepository.findAll();
-//        for (Doctor doctor1 : doctorList) {
-//            if (doctor1.().equals(finCode)) {
-//                doctor1.setCardId(doctor.getCardId());
-//            }
-//        }
-//        return doctorRepository.save(doctor);
-//    }
 
-//    @Override
-//    public void update(long id, String cardId) {
-//
-//        Doctor doctor = doctorRepository.findById(id).get();
-//        doctor.setCardId(cardId);
-//        doctorRepository.save(doctor);
-//
-//    }
 }

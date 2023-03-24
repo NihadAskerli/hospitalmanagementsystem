@@ -20,7 +20,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class WebSecurityConfig {
     private final JWTAuthenticationFilter jwtAuthenticationFilter;
     private final CustomUserDetailService customUserDetailService;
-    private final  UnautharizedHandler unautharizedHandler;
+    private final UnautharizedHandler unautharizedHandler;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -35,12 +35,12 @@ public class WebSecurityConfig {
                 .securityMatcher("/**")
                 .authorizeHttpRequests(registry -> registry.
                         requestMatchers("/").permitAll().
-//                        requestMatchers("/auth/register").permitAll().
-                        requestMatchers("/auth/**").permitAll().
+                         requestMatchers("/auth/**").permitAll().
+                        requestMatchers("/assistant/**").permitAll().
+                        requestMatchers("/patient/**").permitAll().
                         requestMatchers("/doctor/**").permitAll().
                         requestMatchers("/examination/**").permitAll().
                         requestMatchers("/queue/**").permitAll().
-                        requestMatchers("/test/**").hasRole("ADMIN").
                         anyRequest().authenticated());
         return http.build();
     }
