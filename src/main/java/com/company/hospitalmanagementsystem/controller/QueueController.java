@@ -5,6 +5,7 @@ import com.company.hospitalmanagementsystem.models.Examination;
 import com.company.hospitalmanagementsystem.models.Payment;
 import com.company.hospitalmanagementsystem.services.impl.InsuranceServiceImpl;
 import com.company.hospitalmanagementsystem.services.impl.QueueService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +23,14 @@ public class QueueController {
     QueueService queueService;
     @Autowired
     InsuranceServiceImpl insuranceService;
+
     @CrossOrigin
     @PostMapping("/add")
-    public String queue(@RequestBody String queue){
-        QueueDto queueDto=objectMapper.convertValue(queue,QueueDto.class);
+    public String queue(@RequestBody String queue) throws JsonProcessingException {
+//        QueueDto queueDto=objectMapper.convertValue(queue,QueueDto.class);
+
+        QueueDto queueDto=objectMapper.readValue(queue,QueueDto.class);
+
         if(queueDto.getCustomFinCode()!=null){
             if(insuranceService.getByFinCode(queueDto.getCustomFinCode())==null){
                 return "Sizin portalda sigortaniz yoxdur";
@@ -33,6 +38,7 @@ public class QueueController {
         }
             Examination examination = objectMapper.convertValue(queueDto.getExaminationDto(), Examination.class);
             examination.setDate(LocalDate.now());
+
             Payment payment = objectMapper.convertValue(queueDto.getPaymentDto(), Payment.class);
             payment.setDate(LocalDate.now());
             return  queueService.queueSave(examination,payment);

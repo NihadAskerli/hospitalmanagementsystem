@@ -26,8 +26,6 @@ public class PaymentServiceImpl implements PaymentService {
     private final PaymentRepository paymentRepository;
 
 
-
-
     public Payment payment(String finCode) {
         return paymentRepository.getByFinCode(finCode);
     }
@@ -43,8 +41,5 @@ public class PaymentServiceImpl implements PaymentService {
         paymentRepository.delete(paymentRepository.findById(id).get());
     }
 
-//    @Override
-//    public void update(long id) {
-//
-//    }
+
 }
