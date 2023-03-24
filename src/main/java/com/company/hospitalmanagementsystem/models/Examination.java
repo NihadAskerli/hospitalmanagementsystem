@@ -23,5 +23,8 @@ public class Examination {
     private String name;
     private String surname;
     private String pastTreatment;
-    private LocalDate date;
+    private LocalDate localDate;
+    private String time;
+    private String customFinCode;
+
 }

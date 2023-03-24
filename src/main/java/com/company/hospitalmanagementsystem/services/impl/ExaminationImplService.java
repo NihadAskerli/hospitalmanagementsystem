@@ -19,14 +19,11 @@ import java.time.LocalDate;
 public class ExaminationImplService implements ExaminationService {
 
     private final ExaminationRepository examinationRepository;
-    @Autowired
-    PaymentServiceImpl paymentService;
+
 
     @Override
-    @Transactional
-    public void save(Examination examination) {
-        examination.setDate(LocalDate.now());
+    public void saveExamintaion(Examination examination) {
         examinationRepository.save(examination);
-    }
 
+    }
 }

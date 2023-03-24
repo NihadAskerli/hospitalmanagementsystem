@@ -13,5 +13,9 @@ public class ExaminationDto {
     private String name;
     private String surname;
     private String pastTreatment;
+    private String localDate;
+    private String time;
+    private String customFinCode;
+
 
 }
