@@ -33,6 +33,7 @@ public class UnWorkTimeController {
         UnWokrTimeDto unWokrTimeDto=new UnWokrTimeDto();
         unWokrTimeDto.setId(1l);
         unWokrTimeDto.setTimes(times);
+        examinationController.checkExamination.remove(examinationController.checkExamination.get(0));
         return ResponseEntity.ok(unWokrTimeDto);
     }
 
