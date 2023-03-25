@@ -19,7 +19,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/doctor")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")
 public class DoctorController {
 
 

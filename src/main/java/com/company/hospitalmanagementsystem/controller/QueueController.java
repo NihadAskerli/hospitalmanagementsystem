@@ -23,7 +23,6 @@ import java.util.Date;
 @RestController
 @RequestMapping("/queue")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")
 public class QueueController {
 
     private final ObjectMapper objectMapper;
