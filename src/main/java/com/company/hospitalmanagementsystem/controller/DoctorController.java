@@ -19,7 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/doctor")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://hospitalmanagementsystem.us-east-1.elasticbeanstalk.com")
+@CrossOrigin(origins = "http://hospital.us-east-1.elasticbeanstalk.com")
 public class DoctorController {
 
 
