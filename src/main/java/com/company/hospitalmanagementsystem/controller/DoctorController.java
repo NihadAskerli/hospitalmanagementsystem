@@ -19,6 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/doctor")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://hospitalmanagementsystem.us-east-1.elasticbeanstalk.com")
 public class DoctorController {
 
 
@@ -27,20 +28,18 @@ public class DoctorController {
 
     private final ObjectMapper objectMapper;
 
-    @CrossOrigin
+
     @GetMapping("/all")
     public ResponseEntity<List> getAll() {
         return ResponseEntity.ok(doctorService.getAllDoctor());
     }
 
-    @CrossOrigin
     @GetMapping("/{finCode}")
     public ResponseEntity<DoctorDto> getByFinCode(@PathVariable String finCode) {
         DoctorDto doctor = objectMapper.convertValue(doctorService.getByFinCode(finCode), DoctorDto.class);
         return ResponseEntity.ok(doctor);
     }
 
-    @CrossOrigin
     @PostMapping("/save")
     public ResponseEntity<DoctorDto> save(@RequestBody String doctor) throws JsonProcessingException {
 
@@ -52,7 +51,6 @@ public class DoctorController {
     }
 
 
-    @CrossOrigin
     @DeleteMapping("/{id}")
     public void delete(@PathVariable long id) {
         doctorService.delete(id);
@@ -66,7 +64,6 @@ public class DoctorController {
 //
 //    }
 
-    @CrossOrigin
     @PutMapping("/{finCode}")
     public void update(@PathVariable String finCode, @RequestBody String doctor) {
 
