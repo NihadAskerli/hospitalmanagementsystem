@@ -13,6 +13,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
@@ -22,12 +27,13 @@ public class WebSecurityConfig {
     private final CustomUserDetailService customUserDetailService;
     private final UnautharizedHandler unautharizedHandler;
 
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         http
                 .csrf().disable()
-                .cors().disable()
+                .cors().configurationSource(corsConfigurationSource()).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .formLogin().disable()
                 .exceptionHandling().authenticationEntryPoint(unautharizedHandler)
@@ -35,7 +41,7 @@ public class WebSecurityConfig {
                 .securityMatcher("/**")
                 .authorizeHttpRequests(registry -> registry.
                         requestMatchers("/").permitAll().
-                         requestMatchers("/auth/**").permitAll().
+                        requestMatchers("/auth/**").permitAll().
                         requestMatchers("/doctor/**").permitAll().
                         requestMatchers("/unworktime/**").permitAll().
                         requestMatchers("/examination/**").permitAll().
@@ -55,6 +61,17 @@ public class WebSecurityConfig {
                 .userDetailsService(customUserDetailService)
                 .passwordEncoder(passwordEncoder())
                 .and().build();
+    }
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:5000","http://hospital.us-east-1.elasticbeanstalk.com/"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedHeaders(Arrays.asList("*"));
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 
 }
