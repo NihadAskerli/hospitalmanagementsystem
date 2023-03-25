@@ -10,7 +10,7 @@ public class CORSConfig implements WebMvcConfigurer {
         @Override
         public void addCorsMappings(CorsRegistry registry) {
             registry.addMapping("/**")
-                    .allowedOrigins("http://hospitalmanagementsystem.us-east-1.elasticbeanstalk.com")
+                    .allowedOrigins("http://hospital.us-east-1.elasticbeanstalk.com")
                     .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                     .allowedHeaders("*")
                     .allowCredentials(true)
