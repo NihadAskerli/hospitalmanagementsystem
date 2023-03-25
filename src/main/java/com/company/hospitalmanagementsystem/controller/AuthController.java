@@ -23,6 +23,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class AuthController {
     @Autowired
     UserService userService;
