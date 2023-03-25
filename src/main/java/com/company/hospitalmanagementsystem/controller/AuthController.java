@@ -30,8 +30,8 @@ public class AuthController {
     private final ObjectMapper objectMapper;
 
     @PostMapping("/auth/login")
-    public LoginResponse login(@RequestBody @Validated LoginRequest loginRequest) {
-        return authService.loginResponse(loginRequest.getEmail(), loginRequest.getPassword());
+    public ResponseEntity<LoginResponse> login(@RequestBody @Validated LoginRequest loginRequest) {
+        return ResponseEntity.ok(authService.loginResponse(loginRequest.getEmail(), loginRequest.getPassword()));
     }
 
     @PostMapping("/auth/register")

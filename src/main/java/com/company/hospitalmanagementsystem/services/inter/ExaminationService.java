@@ -12,5 +12,6 @@ public interface ExaminationService {
     List<Examination> getAllByFinCode(String finCode);
     void deleteAllByFinCode(String finCode);
     Examination getByDoctorFinCode(String finCode);
+    List<Examination> getKeepExaminations(LocalDate localDate,String finCode);
 }
 
