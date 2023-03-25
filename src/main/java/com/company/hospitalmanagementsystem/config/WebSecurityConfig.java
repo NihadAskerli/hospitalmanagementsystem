@@ -37,6 +37,7 @@ public class WebSecurityConfig {
                         requestMatchers("/").permitAll().
                          requestMatchers("/auth/**").permitAll().
                         requestMatchers("/doctor/**").permitAll().
+                        requestMatchers("/unworktime/**").permitAll().
                         requestMatchers("/examination/**").permitAll().
                         requestMatchers("/queue/**").permitAll().
                         anyRequest().authenticated());
