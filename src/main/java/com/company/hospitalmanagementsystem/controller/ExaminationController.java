@@ -20,16 +20,17 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ExaminationController {
     private final ObjectMapper objectMapper;
-public List<Examination> checkExamination=new ArrayList<>();
+    public static List<Examination> checkExamination = new ArrayList<>();
     private final QueueService queueService;
     private final DoctorServiceImpl doctorService;
+
     @CrossOrigin
     @PostMapping("/check")
     public void checkTime(@RequestBody String check) throws JsonProcessingException, ParseException {
         ExaminationDto examinationDto = objectMapper.readValue(check, ExaminationDto.class);
-        String date=queueService.convertDate(examinationDto.getLocalDate());
+        String date = queueService.convertDate(examinationDto.getLocalDate());
         examinationDto.setLocalDate(date);
-        Examination examination=objectMapper.convertValue(examinationDto, Examination.class);
-       checkExamination.add(examination);
+        Examination examination = objectMapper.convertValue(examinationDto, Examination.class);
+        checkExamination.add(examination);
     }
 }
