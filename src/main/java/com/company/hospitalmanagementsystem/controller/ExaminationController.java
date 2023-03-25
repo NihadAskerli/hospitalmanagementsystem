@@ -19,7 +19,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/examination")
 @RequiredArgsConstructor
-@Import(CORSConfig.class)
 public class ExaminationController {
     private final ObjectMapper objectMapper;
     public static List<Examination> checkExamination = new ArrayList<>();
