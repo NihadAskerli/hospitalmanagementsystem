@@ -20,11 +20,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/unworktime")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://hospitalmanagementsystem.us-east-1.elasticbeanstalk.com")
 public class UnWorkTimeController {
     private final ObjectMapper objectMapper;
     private final UnWorkTimeServiceImpl unWorkTimeService;
     private final ExaminationController examinationController;
-    @CrossOrigin
     @GetMapping("/correcttime")
     public ResponseEntity<UnWokrTimeDto> sendCorrectTime() {
         Examination examination = ExaminationController.checkExamination.get(0);

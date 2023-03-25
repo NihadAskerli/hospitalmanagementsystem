@@ -19,12 +19,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/examination")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://hospitalmanagementsystem.us-east-1.elasticbeanstalk.com")
 public class ExaminationController {
     private final ObjectMapper objectMapper;
     public static List<Examination> checkExamination = new ArrayList<>();
     private final QueueService queueService;
 
-    @CrossOrigin
     @PostMapping("/check")
     public ResponseEntity<String> checkTime(@RequestBody String check) throws JsonProcessingException, ParseException {
         ExaminationDto examinationDto = objectMapper.readValue(check, ExaminationDto.class);

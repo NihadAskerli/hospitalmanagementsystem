@@ -33,7 +33,6 @@ public class AssitantController {
         return ResponseEntity.ok(assistantService.getAllAssistant());
     }
 
-    @CrossOrigin
     @PostMapping
     public ResponseEntity<AssistantDto> save(@RequestBody String assistant) throws JsonProcessingException {
         AssistantDto assistantDto = objectMapper.readValue(assistant, AssistantDto.class);
@@ -41,13 +40,11 @@ public class AssitantController {
                 .convertValue(assistantDto, Assistant.class)), AssistantDto.class));
 
     }
-    @CrossOrigin
     @PutMapping("/update")
     public void update(@RequestBody String assistant) {
         AssistantDto assistantDto = objectMapper.convertValue(assistant, AssistantDto.class);
         assistantService.updateCardId(assistantDto.getCardId(), assistantDto.getFinCode());
     }
-    @CrossOrigin
     @DeleteMapping("/remove{id}")
     public void deleteById(@PathVariable("id") String finCode) {
         assistantService.delete(finCode);
