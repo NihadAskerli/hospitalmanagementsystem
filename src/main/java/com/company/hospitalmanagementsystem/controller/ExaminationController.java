@@ -1,14 +1,11 @@
 package com.company.hospitalmanagementsystem.controller;
 
-import com.company.hospitalmanagementsystem.config.CORSConfig;
 import com.company.hospitalmanagementsystem.dto.ExaminationDto;
 import com.company.hospitalmanagementsystem.models.Examination;
-import com.company.hospitalmanagementsystem.services.impl.DoctorServiceImpl;
 import com.company.hospitalmanagementsystem.services.impl.QueueService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Import;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/examination")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class ExaminationController {
     private final ObjectMapper objectMapper;
     public static List<Examination> checkExamination = new ArrayList<>();
