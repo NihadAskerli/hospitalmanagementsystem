@@ -20,7 +20,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/unworktime")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://hospital.us-east-1.elasticbeanstalk.com")
+@CrossOrigin(origins = "*")
 public class UnWorkTimeController {
     private final ObjectMapper objectMapper;
     private final UnWorkTimeServiceImpl unWorkTimeService;

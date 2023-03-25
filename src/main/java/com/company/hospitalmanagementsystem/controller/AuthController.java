@@ -23,7 +23,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://hospital.us-east-1.elasticbeanstalk.com")
+@CrossOrigin(origins = "*")
 public class AuthController {
     @Autowired
     UserService userService;
