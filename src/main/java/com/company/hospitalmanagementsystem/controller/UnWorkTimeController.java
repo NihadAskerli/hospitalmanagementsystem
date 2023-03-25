@@ -27,7 +27,7 @@ public class UnWorkTimeController {
     @CrossOrigin
     @GetMapping("/correcttime")
     public ResponseEntity<UnWokrTimeDto> sendCorrectTime() {
-        Examination examination = examinationController.checkExamination.get(0);
+        Examination examination = ExaminationController.checkExamination.get(0);
         List<String> times = unWorkTimeService.getByDoctorFinCodeAndLocalDate(examination.getDoctorFinCode(), examination.getLocalDate().getDayOfWeek().toString()).getTimes();
         times.removeAll(unWorkTimeService.keepTimes(examination));
         UnWokrTimeDto unWokrTimeDto=new UnWokrTimeDto();
