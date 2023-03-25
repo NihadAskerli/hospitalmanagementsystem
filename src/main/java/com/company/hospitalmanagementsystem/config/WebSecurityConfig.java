@@ -28,28 +28,51 @@ public class WebSecurityConfig {
     private final UnautharizedHandler unautharizedHandler;
 
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-        http
-                .csrf().disable()
-                .cors().configurationSource(corsConfigurationSource()).and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .formLogin().disable()
-                .exceptionHandling().authenticationEntryPoint(unautharizedHandler)
-                .and()
-                .securityMatcher("/**")
-                .authorizeHttpRequests(registry -> registry.
-                        requestMatchers("/").permitAll().
-                        requestMatchers("/auth/**").permitAll().
-                        requestMatchers("/doctor/**").permitAll().
-                        requestMatchers("/unworktime/**").permitAll().
-                        requestMatchers("/examination/**").permitAll().
-                        requestMatchers("/queue/**").permitAll().
-                        anyRequest().authenticated());
-        return http.build();
-    }
-
+//    @Bean
+//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//        http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+//        http
+//                .csrf().disable()
+//                .cors().configurationSource(corsConfigurationSource()).and()
+//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+//                .formLogin().disable()
+//                .exceptionHandling().authenticationEntryPoint(unautharizedHandler)
+//                .and()
+//                .securityMatcher("/**")
+//                .authorizeHttpRequests(registry -> registry.
+//                        requestMatchers("/").permitAll().
+//                        requestMatchers("/auth/**").permitAll().
+//                        requestMatchers("/doctor/**").permitAll().
+//                        requestMatchers("/unworktime/**").permitAll().
+//                        requestMatchers("/examination/**").permitAll().
+//                        requestMatchers("/queue/**").permitAll().
+//                        anyRequest().authenticated());
+//        return http.build();
+//    }
+@Bean
+public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    http
+            .csrf().disable()
+            .cors().configurationSource(corsConfigurationSource()).and()
+            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+            .formLogin().disable()
+            .exceptionHandling().authenticationEntryPoint(unautharizedHandler)
+            .and()
+            .securityMatcher("/**")
+            .authorizeHttpRequests(registry -> registry
+                    .requestMatchers("/").permitAll()
+                    .requestMatchers("/auth/**").permitAll()
+                    .requestMatchers("/doctor/**").permitAll()
+                    .requestMatchers("/unworktime/**").permitAll()
+                    .requestMatchers("/examination/**").permitAll()
+                    .requestMatchers("/queue/**").permitAll()
+                    .anyRequest().authenticated()
+            )
+            .headers().contentSecurityPolicy("default-src 'self'")
+            .and()
+           ;
+    return http.build();
+}
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -69,6 +92,7 @@ public class WebSecurityConfig {
         configuration.setAllowedOrigins(Arrays.asList("http://localhost:5000","http://hospital.us-east-1.elasticbeanstalk.com"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
+        configuration.setAllowCredentials(true);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
