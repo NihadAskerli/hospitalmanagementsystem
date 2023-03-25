@@ -26,11 +26,12 @@ public class ExaminationController {
 
     @CrossOrigin
     @PostMapping("/check")
-    public void checkTime(@RequestBody String check) throws JsonProcessingException, ParseException {
+    public ResponseEntity<String> checkTime(@RequestBody String check) throws JsonProcessingException, ParseException {
         ExaminationDto examinationDto = objectMapper.readValue(check, ExaminationDto.class);
         String date = queueService.convertDate(examinationDto.getLocalDate());
         examinationDto.setLocalDate(date);
         Examination examination = objectMapper.convertValue(examinationDto, Examination.class);
         checkExamination.add(examination);
+        return ResponseEntity.ok(check);
     }
 }
