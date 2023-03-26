@@ -23,6 +23,7 @@ import java.util.Date;
 @RestController
 @RequestMapping("/queue")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class QueueController {
 
     private final ObjectMapper objectMapper;
@@ -33,7 +34,6 @@ public class QueueController {
 
     private final InsuranceServiceImpl insuranceService;
 
-    @CrossOrigin
     @PostMapping("/add")
     public ResponseEntity<String> queue(@RequestBody String queue) throws ParseException, JsonProcessingException {
         QueueDto queueDto = queueService.convertQueueDto(queue);
@@ -54,7 +54,7 @@ public class QueueController {
         }  else if (examination.getCustomFinCode() != null && insuranceService.getByFinCode(examination.getCustomFinCode()) != null ) {
             examinationImplService.saveExamintaion(examination);
             paymentService.save(new Payment(null,null,null,examination.getCustomFinCode(),null));
-            return ResponseEntity.ok(null);
+            return ResponseEntity.ok("Növbəniz uöurla qeydə alındı");
         }
 
         return ResponseEntity.ok(queueService.queueSave(examination, payment));

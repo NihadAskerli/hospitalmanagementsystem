@@ -21,7 +21,6 @@ import java.util.List;
 @RequestMapping("/assistant")
 @RequiredArgsConstructor
 public class AssitantController {
-
     private final ObjectMapper objectMapper;
 
     @Autowired
@@ -33,31 +32,22 @@ public class AssitantController {
         return ResponseEntity.ok(assistantService.getAllAssistant());
     }
 
-    @CrossOrigin
     @PostMapping
     public ResponseEntity<AssistantDto> save(@RequestBody String assistant) throws JsonProcessingException {
         AssistantDto assistantDto = objectMapper.readValue(assistant, AssistantDto.class);
         return ResponseEntity.ok(objectMapper.convertValue(assistantService.save(objectMapper
                 .convertValue(assistantDto, Assistant.class)), AssistantDto.class));
+
     }
 
-    @CrossOrigin
     @PutMapping("/update")
     public void update(@RequestBody String assistant) {
         AssistantDto assistantDto = objectMapper.convertValue(assistant, AssistantDto.class);
         assistantService.updateCardId(assistantDto.getCardId(), assistantDto.getFinCode());
     }
 
-    @CrossOrigin
     @DeleteMapping("/remove{id}")
     public void deleteById(@PathVariable("id") String finCode) {
         assistantService.delete(finCode);
     }
-
-    @CrossOrigin
-    @GetMapping("/")
-    public void getByPatient() {
-
-    }
-
 }

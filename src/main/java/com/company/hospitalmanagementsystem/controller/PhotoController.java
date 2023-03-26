@@ -1,8 +1,5 @@
 package com.company.hospitalmanagementsystem.controller;
 
-
-
-import com.company.hospitalmanagementsystem.models.Photo;
 import com.company.hospitalmanagementsystem.services.impl.PhotoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;

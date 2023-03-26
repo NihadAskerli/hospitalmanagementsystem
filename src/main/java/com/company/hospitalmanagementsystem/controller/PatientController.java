@@ -20,24 +20,21 @@ public class PatientController {
     @Autowired
     PatientServiceImpl patientService;
 
-    @CrossOrigin
     @GetMapping("/all")
     public ResponseEntity<List> getAllAssistant() {
         return ResponseEntity.ok(patientService.getAllPatient());
     }
 
-    @CrossOrigin
     @PostMapping
     public ResponseEntity<PatientDto> save(@RequestBody String patient) {
         patientService.save(objectMapper.convertValue(objectMapper.convertValue(patient, PatientDto.class), Patient.class));
         return ResponseEntity.ok(objectMapper.convertValue(patient, PatientDto.class));
     }
 
-    @CrossOrigin
     @DeleteMapping("/{id}")
     public void delete(@PathVariable long id) {
         patientService.delete(id);
     }
 
-
 }
+

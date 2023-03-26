@@ -21,4 +21,6 @@ public interface DoctorRepository extends JpaRepository<Doctor,Long> {
     @Query("update Doctor d set d.cardId = ?2 where d.finCode = ?1")
     void updateDoctor(@Param(value = "finCode") String finCode, @Param(value = "cardId") String cardId);
 
+
 }
+
