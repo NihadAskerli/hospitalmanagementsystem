@@ -11,7 +11,7 @@ public interface DoctorService {
 
     Doctor save(Doctor doctor);
 
-    void delete(long id);
+    void delete(String finCode);
 
     void update(String finCode, Doctor doctor);
 }

@@ -1,16 +1,11 @@
 package com.company.hospitalmanagementsystem.controller;
 
 import com.company.hospitalmanagementsystem.dto.DoctorDto;
-import com.company.hospitalmanagementsystem.dto.ExaminationDto;
 import com.company.hospitalmanagementsystem.models.Doctor;
-
-import com.company.hospitalmanagementsystem.models.Examination;
 import com.company.hospitalmanagementsystem.services.impl.DoctorServiceImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,10 +17,7 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 public class DoctorController {
 
-
-
     private final DoctorServiceImpl doctorService;
-
     private final ObjectMapper objectMapper;
 
 
@@ -42,38 +34,25 @@ public class DoctorController {
 
     @PostMapping("/save")
     public ResponseEntity<DoctorDto> save(@RequestBody String doctor) throws JsonProcessingException {
-
-
         DoctorDto doctorDto = objectMapper.readValue(doctor, DoctorDto.class);
         return ResponseEntity.ok(objectMapper.convertValue(doctorService.save(objectMapper
                 .convertValue(doctorDto, Doctor.class)), DoctorDto.class));
 
     }
 
-
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable long id) {
-        doctorService.delete(id);
+    @DeleteMapping("/{finCode}")
+    public void delete(@PathVariable String finCode) {
+        doctorService.delete(finCode);
     }
 
-
-//    @PutMapping("/{finCode}")
-//    public ResponseEntity<DoctorDto> update(@PathVariable String finCode, @RequestBody DoctorDto doctorDto) {
-//        return ResponseEntity.ok(objectMapper.convertValue(doctorService.update(finCode, objectMapper
-//                .convertValue(doctorDto, Doctor.class)), DoctorDto.class));
-//
-//    }
 
     @PutMapping("/{finCode}")
-    public void update(@PathVariable String finCode, @RequestBody String doctor) {
+    public void update(@PathVariable String finCode, @RequestBody String doctor) throws JsonProcessingException {
+
+        DoctorDto doctorDto = objectMapper.readValue(doctor, DoctorDto.class);
 
         doctorService.update(finCode, objectMapper
-                .convertValue(objectMapper
-                        .convertValue(doctor, DoctorDto.class), Doctor.class));
-
+                .convertValue(doctorDto, Doctor.class));
 
     }
-
-
-
-    }
+}

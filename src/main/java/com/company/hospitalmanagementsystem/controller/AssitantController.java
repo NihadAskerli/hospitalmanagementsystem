@@ -21,7 +21,6 @@ import java.util.List;
 @RequestMapping("/assistant")
 @RequiredArgsConstructor
 public class AssitantController {
-
     private final ObjectMapper objectMapper;
 
     @Autowired
@@ -40,11 +39,13 @@ public class AssitantController {
                 .convertValue(assistantDto, Assistant.class)), AssistantDto.class));
 
     }
+
     @PutMapping("/update")
     public void update(@RequestBody String assistant) {
         AssistantDto assistantDto = objectMapper.convertValue(assistant, AssistantDto.class);
         assistantService.updateCardId(assistantDto.getCardId(), assistantDto.getFinCode());
     }
+
     @DeleteMapping("/remove{id}")
     public void deleteById(@PathVariable("id") String finCode) {
         assistantService.delete(finCode);
