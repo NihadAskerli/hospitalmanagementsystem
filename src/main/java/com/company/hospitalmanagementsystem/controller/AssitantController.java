@@ -40,15 +40,24 @@ public class AssitantController {
         return ResponseEntity.ok(objectMapper.convertValue(assistantService.save(objectMapper
                 .convertValue(assistantDto, Assistant.class)), AssistantDto.class));
     }
+
     @CrossOrigin
     @PutMapping("/update")
     public void update(@RequestBody String assistant) {
         AssistantDto assistantDto = objectMapper.convertValue(assistant, AssistantDto.class);
         assistantService.updateCardId(assistantDto.getCardId(), assistantDto.getFinCode());
     }
+
     @CrossOrigin
     @DeleteMapping("/remove{id}")
     public void deleteById(@PathVariable("id") String finCode) {
         assistantService.delete(finCode);
     }
+
+    @CrossOrigin
+    @GetMapping("/")
+    public void getByPatient() {
+
+    }
+
 }

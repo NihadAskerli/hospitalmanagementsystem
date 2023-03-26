@@ -35,12 +35,11 @@ public class WebSecurityConfig {
                 .securityMatcher("/**")
                 .authorizeHttpRequests(registry -> registry.
                         requestMatchers("/").permitAll().
-//                        requestMatchers("/auth/register").permitAll().
+                        requestMatchers("/auth/register").permitAll().
                         requestMatchers("/auth/**").permitAll().
                         requestMatchers("/assistant/**").permitAll().
                         requestMatchers("/patient/**").permitAll().
                         requestMatchers("/queue/**").permitAll().
-//                        requestMatchers("/doctor/**").permitAll().
                         requestMatchers("/examination/**").permitAll().
                         requestMatchers("/doctor/**").hasRole("DOCTOR").
                         requestMatchers("/test/**").hasRole("ADMIN").

@@ -48,9 +48,9 @@ public class DoctorController {
 
 
     @CrossOrigin
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable long id) {
-        doctorService.delete(id);
+    @DeleteMapping("/{finCode}")
+    public void delete(@PathVariable String finCode) {
+        doctorService.delete(finCode);
     }
 
 

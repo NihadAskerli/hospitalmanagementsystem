@@ -35,8 +35,8 @@ public class DoctorServiceImpl implements DoctorService {
 
 
     @Override
-    public void delete(long id) {
-        doctorRepository.delete(doctorRepository.findById(id).get());
+    public void delete(String finCode) {
+        doctorRepository.delete(doctorRepository.getByFinCode(finCode));
     }
 
     @Override
