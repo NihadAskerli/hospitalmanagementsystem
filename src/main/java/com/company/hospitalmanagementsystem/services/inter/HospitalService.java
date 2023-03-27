@@ -1,6 +1,5 @@
 package com.company.hospitalmanagementsystem.services.inter;
 
-import com.amazonaws.services.budgets.model.Budget;
 import com.company.hospitalmanagementsystem.models.Hospital;
 
 import java.math.BigDecimal;
