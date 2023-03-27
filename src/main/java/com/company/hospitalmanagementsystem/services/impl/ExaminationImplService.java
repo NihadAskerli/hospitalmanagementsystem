@@ -47,7 +47,8 @@ public class ExaminationImplService implements ExaminationService {
     }
 
     @Override
-    public Examination getByDoctorFinCode(String finCode) {
+    public List<Examination> getByDoctorFinCode(String finCode) {
+
         return examinationRepository.getByDoctorFinCode(finCode);
     }
 
@@ -55,5 +56,6 @@ public class ExaminationImplService implements ExaminationService {
     public List<Examination> getKeepExaminations(LocalDate localDate,String finCdoe) {
         return examinationRepository.getByLocalDateAndDoctorFinCode(localDate,finCdoe);
     }
+
 
 }
