@@ -25,8 +25,8 @@ import java.util.List;
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 public class AuthController {
-    @Autowired
-    UserService userService;
+
+    private final UserService userService;
     private final AuthService authService;
 
     private final ObjectMapper objectMapper;
