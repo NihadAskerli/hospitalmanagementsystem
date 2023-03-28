@@ -53,8 +53,14 @@ public class ExaminationImplService implements ExaminationService {
     }
 
     @Override
-    public List<Examination> getKeepExaminations(LocalDate localDate,String finCdoe) {
-        return examinationRepository.getByLocalDateAndDoctorFinCode(localDate,finCdoe);
+    public List<Examination> getKeepExaminations(LocalDate localDate, String finCdoe) {
+        return examinationRepository.getByLocalDateAndDoctorFinCode(localDate, finCdoe);
+    }
+
+    @Override
+    public Examination getUserByNameAndSurname(String name, String surname) {
+        return examinationRepository.getUserByNameAndSurname(name, surname);
+
     }
 
 

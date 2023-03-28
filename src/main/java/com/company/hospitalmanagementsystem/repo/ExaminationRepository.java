@@ -18,10 +18,11 @@ public interface ExaminationRepository extends JpaRepository<Examination, Long> 
 
     void deleteAllByDoctorFinCode(String finCode);
 
-//    @Modifying(clearAutomatically = true)
-//    @Query("select e from Examination e where e.doctorFinCode=?1")
-    List<Examination> getByDoctorFinCode( String doctorFinCode);
+    List<Examination> getByDoctorFinCode(String doctorFinCode);
 
     List<Examination> getByLocalDateAndDoctorFinCode(LocalDate localDate, String doctorFinCode);
+
+    @Query("select e from Examination e where e.name =?1 and e.surname=?2")
+    Examination getUserByNameAndSurname(@Param(value = "name") String name, @Param(value = "surname") String Surname);
 
 }
