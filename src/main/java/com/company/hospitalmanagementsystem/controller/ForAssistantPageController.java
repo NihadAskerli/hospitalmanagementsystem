@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/assistantPage")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")
 public class ForAssistantPageController {
 
     private final ObjectMapper objectMapper;
@@ -32,8 +32,10 @@ public class ForAssistantPageController {
     List<ForAssistantPageDto> forAssistantPageDtoList = new ArrayList<>();
 
 
+
     @GetMapping("/search")
     public ResponseEntity<List<ForAssistantPageDto>> getPatientByDoctor() throws JsonProcessingException {
+
 
         List<Examination> examinationList = examinationService.getAllByLocalDate();
 

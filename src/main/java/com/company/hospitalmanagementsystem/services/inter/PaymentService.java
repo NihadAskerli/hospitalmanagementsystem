@@ -8,7 +8,7 @@ import java.util.List;
 public interface PaymentService {
 
 
-    Payment getByFinCode(String finCode);
+//    Payment getByFinCode(String finCode);
 
     void delete(long id);
 

@@ -27,18 +27,15 @@ public class WebSecurityConfig {
     private final CustomUserDetailService customUserDetailService;
     private final UnautharizedHandler unautharizedHandler;
 
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         http
-                .csrf().disable()
-                .cors().disable()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .formLogin().disable()
-                .exceptionHandling().authenticationEntryPoint(unautharizedHandler)
-                .and()
+                .csrf().disable().cors().configurationSource(corsConfigurationSource()).and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().formLogin().disable()
+                .exceptionHandling().authenticationEntryPoint(unautharizedHandler).and()
                 .securityMatcher("/**")
+
                 .authorizeHttpRequests(registry -> registry.
                         requestMatchers("/").permitAll().
                         requestMatchers("/auth/**").permitAll().
@@ -48,7 +45,19 @@ public class WebSecurityConfig {
                         requestMatchers("/queue/**").permitAll().
                         requestMatchers("/assistantPage/search").hasRole("ASSISTANT").
                         anyRequest().authenticated());
+
         return http.build();
+    }
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST"));
+        configuration.setAllowedHeaders(Arrays.asList("*"));
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 
     @Bean
@@ -58,12 +67,7 @@ public class WebSecurityConfig {
 
     @Bean
     public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
-        return http.getSharedObject(AuthenticationManagerBuilder.class)
-                .userDetailsService(customUserDetailService)
-                .passwordEncoder(passwordEncoder())
-                .and().build();
+        return http.getSharedObject(AuthenticationManagerBuilder.class).userDetailsService(customUserDetailService)
+                .passwordEncoder(passwordEncoder()).and().build();
     }
-
-
-
 }

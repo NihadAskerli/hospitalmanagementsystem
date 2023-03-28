@@ -1,10 +1,12 @@
 package com.company.hospitalmanagementsystem.models;
 
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
 @Getter
 @Builder
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class LoginRequest {
     private String email;
     private String password;

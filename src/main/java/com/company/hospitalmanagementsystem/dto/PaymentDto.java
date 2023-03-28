@@ -14,10 +14,10 @@ import java.util.Date;
 @NoArgsConstructor
 public class PaymentDto {
 
-    private Long id;
     private String cardId;
+    private String CVV;
+    private String endTime;
     private BigDecimal pay;
-    private String finCode;
     private LocalDate date;
 
 

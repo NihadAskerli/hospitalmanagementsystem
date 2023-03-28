@@ -23,7 +23,6 @@ import java.util.Date;
 @RestController
 @RequestMapping("/queue")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")
 public class QueueController {
 
     private final ObjectMapper objectMapper;
@@ -48,13 +47,11 @@ public class QueueController {
         else if (examination.getCustomFinCode() != null && insuranceService.getByFinCode(examination.getCustomFinCode()) == null ) {
             return ResponseEntity.ok("Sizin sıgortanız yoxdur");
         }else if(queueDto.getExaminationDto().getCustomFinCode() == null && payment.getPay()==null ) {
-
             return ResponseEntity.ok("Ödenişi ödeyin zəhmet olmasa");
 
         }  else if (examination.getCustomFinCode() != null && insuranceService.getByFinCode(examination.getCustomFinCode()) != null ) {
             examinationImplService.saveExamintaion(examination);
-            paymentService.save(new Payment(null,null,null,examination.getCustomFinCode(),null));
-            return ResponseEntity.ok("Növbəniz uöurla qeydə alındı");
+            return ResponseEntity.ok("Növbəniz uğurla qeydə alındı");
         }
 
         return ResponseEntity.ok(queueService.queueSave(examination, payment));

@@ -22,9 +22,8 @@ public class Payment {
     )
     private Long id;
     private String cardId;
+    private String CVV;
+    private String endTime;
     private BigDecimal pay;
-    private String finCode;
     private LocalDate date;
-
-
 }

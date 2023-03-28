@@ -9,9 +9,13 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ExaminationDto {
+
     private String doctorFinCode;
     private String name;
     private String surname;
+    private String email;
+    private String phone;
+    private String registerEmail;
     private String pastTreatment;
     private String localDate;
     private String time;

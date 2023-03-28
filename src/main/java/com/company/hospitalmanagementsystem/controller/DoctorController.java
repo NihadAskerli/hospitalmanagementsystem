@@ -1,5 +1,9 @@
 package com.company.hospitalmanagementsystem.controller;
 
+import com.auth0.jwt.interfaces.DecodedJWT;
+import com.company.hospitalmanagementsystem.config.JWTAuthenticationFilter;
+import com.company.hospitalmanagementsystem.config.JWTToPrincipalConverter;
+import com.company.hospitalmanagementsystem.config.UserPrinciple;
 import com.company.hospitalmanagementsystem.dto.DoctorDto;
 import com.company.hospitalmanagementsystem.models.Doctor;
 import com.company.hospitalmanagementsystem.services.impl.DoctorServiceImpl;
@@ -9,12 +13,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/doctor")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")
 public class DoctorController {
 
     private final DoctorServiceImpl doctorService;
@@ -26,8 +30,9 @@ public class DoctorController {
         return ResponseEntity.ok(doctorService.getAllDoctor());
     }
 
-    @GetMapping("/{finCode}")
+    @GetMapping("/search/{finCode}")
     public ResponseEntity<DoctorDto> getByFinCode(@PathVariable String finCode) {
+
         DoctorDto doctor = objectMapper.convertValue(doctorService.getByFinCode(finCode), DoctorDto.class);
         return ResponseEntity.ok(doctor);
     }
@@ -55,4 +60,5 @@ public class DoctorController {
                 .convertValue(doctorDto, Doctor.class));
 
     }
+
 }

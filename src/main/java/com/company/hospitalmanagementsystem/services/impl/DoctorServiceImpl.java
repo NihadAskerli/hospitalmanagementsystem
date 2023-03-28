@@ -1,5 +1,6 @@
 package com.company.hospitalmanagementsystem.services.impl;
 
+import com.company.hospitalmanagementsystem.config.UserPrinciple;
 import com.company.hospitalmanagementsystem.models.Doctor;
 import com.company.hospitalmanagementsystem.repo.DoctorRepository;
 import com.company.hospitalmanagementsystem.services.inter.DoctorService;
