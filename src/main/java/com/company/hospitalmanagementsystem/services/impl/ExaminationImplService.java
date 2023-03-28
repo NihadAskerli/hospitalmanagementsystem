@@ -31,8 +31,8 @@ public class ExaminationImplService implements ExaminationService {
     }
 
     @Override
-    public List<Examination> getAllByLocalDate(LocalDate localDate) {
-        return examinationRepository.getAllByLocalDate(localDate);
+    public List<Examination> getAllByLocalDate() {
+        return examinationRepository.getAllByLocalDate(LocalDate.now());
     }
 
     @Override

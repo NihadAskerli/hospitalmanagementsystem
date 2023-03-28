@@ -46,7 +46,7 @@ public class WebSecurityConfig {
                         requestMatchers("/unworktime/**").permitAll().
                         requestMatchers("/examination/**").permitAll().
                         requestMatchers("/queue/**").permitAll().
-                        requestMatchers("/assistantPage/**").permitAll().
+                        requestMatchers("/assistantPage/search").hasRole("ASSISTANT").
                         anyRequest().authenticated());
         return http.build();
     }
