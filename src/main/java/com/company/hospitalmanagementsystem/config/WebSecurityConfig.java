@@ -35,17 +35,17 @@ public class WebSecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().formLogin().disable()
                 .exceptionHandling().authenticationEntryPoint(unautharizedHandler).and()
                 .securityMatcher("/**")
-                .authorizeHttpRequests(registry -> registry.requestMatchers("/").permitAll().
-                        requestMatchers("/auth/login").permitAll().
-                        requestMatchers("/auth/register").permitAll()
-                        .requestMatchers("/doctor/all").permitAll()
-                        .requestMatchers("/doctor/search").hasRole("USER")
-                        .requestMatchers("/assistantPage/search").hasRole("USER")
-                        .requestMatchers("/queue/add").permitAll().
-                        requestMatchers("/examination/check").permitAll().
-                        requestMatchers("/unWorkTime/correctTime").permitAll().
-                        requestMatchers("/user").hasRole("USER")
-                        .anyRequest().authenticated());
+
+                .authorizeHttpRequests(registry -> registry.
+                        requestMatchers("/").permitAll().
+                        requestMatchers("/auth/**").permitAll().
+                        requestMatchers("/doctor/**").permitAll().
+                        requestMatchers("/unworktime/**").permitAll().
+                        requestMatchers("/examination/**").permitAll().
+                        requestMatchers("/queue/**").permitAll().
+                        requestMatchers("/assistantPage/search").hasRole("ASSISTANT").
+                        anyRequest().authenticated());
+
         return http.build();
     }
 
