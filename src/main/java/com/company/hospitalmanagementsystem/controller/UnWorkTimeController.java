@@ -18,15 +18,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/unworktime")
+@RequestMapping("/unWorkTime")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")
 public class UnWorkTimeController {
     private final ObjectMapper objectMapper;
     private final UnWorkTimeServiceImpl unWorkTimeService;
     private final ExaminationController examinationController;
 
-    @GetMapping("/correcttime")
+    @GetMapping("/correctTime")
     public ResponseEntity<UnWokrTimeDto> sendCorrectTime() {
         Examination examination = ExaminationController.checkExamination.get(0);
         List<String> times = unWorkTimeService.getByDoctorFinCodeAndLocalDate(examination.getDoctorFinCode(), examination.getLocalDate().getDayOfWeek().toString()).getTimes();

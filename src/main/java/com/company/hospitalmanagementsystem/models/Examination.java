@@ -23,6 +23,9 @@ public class Examination {
     private String doctorFinCode;
     private String name;
     private String surname;
+    private String email;
+    private String phone;
+    private String registerEmail;
     private String pastTreatment;
     private LocalDate localDate;
     private String time;

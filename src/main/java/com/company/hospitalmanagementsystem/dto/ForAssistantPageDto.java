@@ -16,5 +16,7 @@ public class ForAssistantPageDto {
     private String doctorFinCode;
     private LocalDate date;
     private String time;
+    private String doctorName;
+    private String doctorSurname;
 
 }

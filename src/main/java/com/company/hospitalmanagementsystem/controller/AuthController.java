@@ -8,22 +8,19 @@ import com.company.hospitalmanagementsystem.models.Role;
 import com.company.hospitalmanagementsystem.models.UserEntity;
 import com.company.hospitalmanagementsystem.services.impl.AuthService;
 import com.company.hospitalmanagementsystem.services.impl.UserService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")
+@RequestMapping("/auth")
 public class AuthController {
 
     private final UserService userService;
@@ -31,18 +28,24 @@ public class AuthController {
 
     private final ObjectMapper objectMapper;
 
-    @PostMapping("/auth/login")
-    public ResponseEntity<LoginResponse> login(@RequestBody @Validated LoginRequest loginRequest) {
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponse> login(@RequestBody @Validated String login) throws JsonProcessingException {
+        LoginRequest loginRequest=objectMapper.readValue(login, LoginRequest.class);
         return ResponseEntity.ok(authService.loginResponse(loginRequest.getEmail(), loginRequest.getPassword()));
     }
 
-    @PostMapping("/auth/register")
-    public ResponseEntity<UserDto> register(@RequestBody UserDto user) {
-        UserEntity userEntity = objectMapper.convertValue(user, UserEntity.class);
-        List<Role> roleList = new ArrayList<>();
-        roleList.add(Role.ROLE_USER);
-        userEntity.setRole(roleList);
-        userService.saveUser(userEntity);
-        return ResponseEntity.ok(user);
+    @PostMapping("/register")
+    public ResponseEntity<String> register(@RequestBody String register) throws JsonProcessingException {
+        UserDto userDto = objectMapper.readValue(register, UserDto.class);
+         if(userService.findByEmail(userDto.getEmail()).isEmpty()) {
+            UserEntity userEntity = objectMapper.convertValue(userDto, UserEntity.class);
+            List<Role> roleList = new ArrayList<>();
+            roleList.add(Role.ROLE_USER);
+            userEntity.setRole(roleList);
+            userService.saveUser(userEntity);
+            return ResponseEntity.ok("ugurla register olundunuz");
+        }else {
+            return ResponseEntity.ok("Zehmet olmasa düzgün email daxil edin");
+        }
     }
 }

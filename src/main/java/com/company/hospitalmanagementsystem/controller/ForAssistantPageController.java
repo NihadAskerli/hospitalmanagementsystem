@@ -11,13 +11,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/assistantPage")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")
 public class ForAssistantPageController {
 
     private final ObjectMapper objectMapper;
@@ -27,9 +27,9 @@ public class ForAssistantPageController {
     List<ForAssistantPageDto> forAssistantPageDtoList = new ArrayList<>();
 
 
-    @GetMapping("/{doctorFinCode}")
+    @GetMapping("/search/{doctorFinCode}")
     public ResponseEntity<List<ForAssistantPageDto>> getPatientByDoctor(@PathVariable String doctorFinCode) throws JsonProcessingException {
-        List<Examination> examinationList = examinationService.getByDoctorFinCode(doctorFinCode);
+        List<Examination> examinationList = examinationService.getAllByLocalDate(LocalDate.now());
 
         for (int i = 0; i < examinationList.size(); i++) {
 
