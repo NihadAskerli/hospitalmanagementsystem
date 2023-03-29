@@ -8,11 +8,18 @@ import java.util.List;
 public interface ExaminationService {
 
     void saveExamintaion(Examination examintaion);
+
     List<Examination> getAllByLocalDate();
+
     List<Examination> getAllByFinCode(String finCode);
+
     void deleteAllByFinCode(String finCode);
+
     List<Examination> getByDoctorFinCode(String finCode);
-    List<Examination> getKeepExaminations(LocalDate localDate,String finCode);
+
+    List<Examination> getKeepExaminations(LocalDate localDate, String finCode);
+
+    Examination getUserByNameAndSurname(String name, String surname);
 
 }
 
