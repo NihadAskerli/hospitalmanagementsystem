@@ -40,7 +40,7 @@ public class WebSecurityConfig {
                         requestMatchers("/").permitAll().
                         requestMatchers("/auth/**").permitAll().
                         requestMatchers("/doctor/**").permitAll().
-                        requestMatchers("/unworktime/**").permitAll().
+                        requestMatchers("/workTime/**").permitAll().
                         requestMatchers("/examination/**").permitAll().
                         requestMatchers("/queue/**").permitAll().
                         requestMatchers("/assistantPage/search").hasRole("ASSISTANT").

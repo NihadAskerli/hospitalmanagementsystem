@@ -18,7 +18,7 @@ import java.util.List;
 public class JWTToPrincipalConverter {
 private final ExaminationImplService examinationImplService;
 public UserPrinciple convert(DecodedJWT jwt){
-    examinationImplService.saveExamintaion(new Examination(null,null,null,null,null,null,jwt.getClaim("e").asString(),null,null,null,null));
+
     return UserPrinciple.builder()
             .userId(Long.valueOf(jwt.getSubject()))
             .email(jwt.getClaim("e").asString())
