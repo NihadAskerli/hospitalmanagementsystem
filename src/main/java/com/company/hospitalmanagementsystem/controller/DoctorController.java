@@ -32,7 +32,6 @@ public class DoctorController {
 
     @GetMapping("/search/{finCode}")
     public ResponseEntity<DoctorDto> getByFinCode(@PathVariable String finCode) {
-
         DoctorDto doctor = objectMapper.convertValue(doctorService.getByFinCode(finCode), DoctorDto.class);
         return ResponseEntity.ok(doctor);
     }
