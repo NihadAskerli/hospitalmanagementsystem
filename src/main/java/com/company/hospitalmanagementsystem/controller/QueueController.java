@@ -29,7 +29,6 @@ public class QueueController {
 
     private final QueueService queueService;
     private final ExaminationImplService examinationImplService;
-    private  final PaymentServiceImpl paymentService;
 
     private final InsuranceServiceImpl insuranceService;
 
