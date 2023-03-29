@@ -22,7 +22,6 @@ import java.util.List;
 public class ExaminationImplService implements ExaminationService {
 
     private final ExaminationRepository examinationRepository;
-    private final EntityManager entityManager;
 
     @Override
     public void saveExamintaion(Examination examination) {

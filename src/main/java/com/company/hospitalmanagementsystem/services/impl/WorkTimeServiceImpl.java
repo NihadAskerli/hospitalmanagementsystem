@@ -19,6 +19,12 @@ public class WorkTimeServiceImpl implements WorkTimeService {
     public WorkTime getByDoctorFinCodeAndLocalDate(String finCode, String week) {
         return unWorkTimeRepository.getByDoctorFinCodeAndAndWeekOfDay(finCode,week);
     }
+
+    @Override
+    public WorkTime getByDoctorFinCode(String finCode) {
+        return unWorkTimeRepository.getByDoctorFinCode(finCode);
+    }
+
     public List<String> keepTimes(Examination examination){
         List<String> times=new ArrayList<>();
         List<Examination> examinations=examinationImplService.getKeepExaminations(examination.getLocalDate(),examination.getDoctorFinCode());

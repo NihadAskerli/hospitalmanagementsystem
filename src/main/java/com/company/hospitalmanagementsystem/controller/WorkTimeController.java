@@ -1,6 +1,8 @@
 package com.company.hospitalmanagementsystem.controller;
 
-import com.company.hospitalmanagementsystem.dto.WorkTimeDto;
+
+import com.company.hospitalmanagementsystem.dto.WokrTimeDto;
+
 import com.company.hospitalmanagementsystem.models.Examination;
 import com.company.hospitalmanagementsystem.services.impl.WorkTimeServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,16 +18,17 @@ import java.util.List;
 @RequestMapping("/workTime")
 @RequiredArgsConstructor
 public class WorkTimeController {
+
     private final ObjectMapper objectMapper;
     private final WorkTimeServiceImpl unWorkTimeService;
     private final ExaminationController examinationController;
-
+    
     @GetMapping("/correctTime")
-    public ResponseEntity<WorkTimeDto> sendCorrectTime() {
+    public ResponseEntity<WokrTimeDto> sendCorrectTime() {
         Examination examination = ExaminationController.checkExamination.get(0);
         List<String> times = unWorkTimeService.getByDoctorFinCodeAndLocalDate(examination.getDoctorFinCode(), examination.getLocalDate().getDayOfWeek().toString()).getTimes();
         times.removeAll(unWorkTimeService.keepTimes(examination));
-        WorkTimeDto unWokrTimeDto=new WorkTimeDto();
+        WokrTimeDto unWokrTimeDto=new WokrTimeDto();
         unWokrTimeDto.setId(1l);
         unWokrTimeDto.setTimes(times);
         examinationController.checkExamination.remove(examinationController.checkExamination.get(0));
