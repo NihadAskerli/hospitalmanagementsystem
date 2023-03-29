@@ -34,6 +34,7 @@ public class QueueController {
 
     @PostMapping("/add")
     public ResponseEntity<String> queue(@RequestBody String queue) throws ParseException, JsonProcessingException {
+        System.out.println(queue);
         QueueDto queueDto = queueService.convertQueueDto(queue);
         ExaminationDto examinationDto = queueDto.getExaminationDto();
         examinationDto.setLocalDate(queueService.convertDate(examinationDto.getLocalDate()));

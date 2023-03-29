@@ -36,7 +36,7 @@ public class QueueService {
 
     @Transactional
     public String queueSave(Examination examination, Payment payment) {
-        if (payment.getPay()!=null && payment.getCardId()!=null && cardId.matcher(payment.getCardId()).matches() && payment.getCardId().length() == 16  && cardId.matcher(payment.getCVV()).matches() &&
+        if (payment.getPay()!=null && payment.getCardId()!=null && cardId.matcher(payment.getCardId()).matches() && payment.getCardId().length() == 16  && payment.getCardCode()!=null && cardId.matcher(payment.getCardCode()).matches() &&
                  payment.getPay().compareTo(BigDecimal.valueOf(doctorService.getByFinCode(examination.getDoctorFinCode()).getExaminationPay())) == 0) {
 
             examinationRepository.save(examination);
@@ -69,6 +69,7 @@ public class QueueService {
     }
     public QueueDto convertQueueDto(String jsonString) throws JsonProcessingException {
         QueueDto queueDto=objectMapper.readValue(jsonString, QueueDto.class);
+        System.out.println(queueDto);
         return queueDto;
     }
 }
