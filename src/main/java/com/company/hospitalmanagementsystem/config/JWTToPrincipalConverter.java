@@ -17,20 +17,17 @@ import java.util.List;
 @RequiredArgsConstructor
 public class JWTToPrincipalConverter {
     private final ExaminationImplService examinationImplService;
+    public UserPrinciple convert(DecodedJWT jwt){
 
-    public UserPrinciple convert(DecodedJWT jwt) {
-        examinationImplService.saveExamintaion(new Examination(null, null, null, null, null, null, jwt.getClaim("e").asString(), null, null, null, null));
         return UserPrinciple.builder()
                 .userId(Long.valueOf(jwt.getSubject()))
                 .email(jwt.getClaim("e").asString())
                 .authorities(extractAuthoritiesFromClaim(jwt))
                 .build();
     }
-
-    public List<SimpleGrantedAuthority> extractAuthoritiesFromClaim(DecodedJWT jwt) {
-        var claim = jwt.getClaim("a");
-        if (claim.isNull() || claim.isMissing()) return List.of();
+    public List<SimpleGrantedAuthority> extractAuthoritiesFromClaim(DecodedJWT jwt){
+        var claim=jwt.getClaim("a");
+        if(claim.isNull()|| claim.isMissing()) return List.of();
         return claim.asList(SimpleGrantedAuthority.class);
     }
-
 }

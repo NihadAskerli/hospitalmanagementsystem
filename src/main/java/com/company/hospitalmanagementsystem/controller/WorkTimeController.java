@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/unWorkTime")
+@RequestMapping("/workTime")
 @RequiredArgsConstructor
-public class UnWorkTimeController {
+public class WorkTimeController {
     private final ObjectMapper objectMapper;
     private final WorkTimeServiceImpl unWorkTimeService;
     private final ExaminationController examinationController;

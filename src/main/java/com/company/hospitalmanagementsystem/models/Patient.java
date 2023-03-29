@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name = "patients")
 @Data
@@ -23,7 +25,8 @@ public class Patient {
     private String email;
     private String phone;
     private String address;
-    private String date;
+    private LocalDate beginDate;
+    private LocalDate endDate;
     @ManyToOne
     @JoinColumn(name = "doctor_id", referencedColumnName = "id")
     @JsonIgnore
