@@ -20,8 +20,9 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
     private final JWTDecoder jwtDecoder;
     private final JWTToPrincipalConverter jwtToPrincipalConverter;
 
-    private Optional<String> extractTokenFrpmRequest(HttpServletRequest httpServletRequest){
+    private Optional<String> extractTokenFromRequest(HttpServletRequest httpServletRequest){
         var token=httpServletRequest.getHeader("Authorization");
+        System.out.println(token);
         if(StringUtils.hasText(token) && token.startsWith("Bearer ")) {
             return Optional.of(token.substring(7));
         }
@@ -30,11 +31,12 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        extractTokenFrpmRequest(request)
+        extractTokenFromRequest(request)
                 .map(jwtDecoder::decode)
                 .map(jwtToPrincipalConverter::convert)
                 .map(UserPrincipalAuthenticationToken::new)
                 .ifPresent(authetication-> SecurityContextHolder.getContext().setAuthentication(authetication));
         filterChain.doFilter(request,response);
     }
+
 }

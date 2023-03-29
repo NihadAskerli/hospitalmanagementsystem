@@ -1,23 +1,22 @@
 package com.company.hospitalmanagementsystem.services.impl;
 
 import com.company.hospitalmanagementsystem.models.Examination;
-import com.company.hospitalmanagementsystem.models.UnWorkTime;
-import com.company.hospitalmanagementsystem.repo.UnWorkTimeRepository;
-import com.company.hospitalmanagementsystem.services.inter.UnWorkTimeService;
+import com.company.hospitalmanagementsystem.models.WorkTime;
+import com.company.hospitalmanagementsystem.repo.WorkTimeRepository;
+import com.company.hospitalmanagementsystem.services.inter.WorkTimeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class UnWorkTimeServiceImpl implements UnWorkTimeService {
-    private final UnWorkTimeRepository unWorkTimeRepository;
+public class WorkTimeServiceImpl implements WorkTimeService {
+    private final WorkTimeRepository unWorkTimeRepository;
     private final ExaminationImplService examinationImplService;
     @Override
-    public UnWorkTime getByDoctorFinCodeAndLocalDate(String finCode, String week) {
+    public WorkTime getByDoctorFinCodeAndLocalDate(String finCode, String week) {
         return unWorkTimeRepository.getByDoctorFinCodeAndAndWeekOfDay(finCode,week);
     }
     public List<String> keepTimes(Examination examination){

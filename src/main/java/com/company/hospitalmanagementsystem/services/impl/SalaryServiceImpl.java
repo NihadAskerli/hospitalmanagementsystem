@@ -17,13 +17,12 @@ import java.util.List;
 public class SalaryServiceImpl implements SalaryService {
     private final SalaryRepository salaryRepository;
     private final DoctorServiceImpl doctorService;
-    private final PaymentServiceImpl paymentService;
     private final HospitalServiceImpl hospitalService;
     private final AssistantServiceImpl assistantService;
     private final ExaminationImplService examinationImplService;
 
 
-    @Scheduled(cron = "0 0 3 28 * ?")
+//    @Scheduled(cron = "0 0 3 28 * ?")
     public void salaryBudget() {
         List<Doctor> doctors=doctorService.getAllDoctor();
         BigDecimal allSalary=new BigDecimal(0.0);
@@ -38,7 +37,7 @@ public class SalaryServiceImpl implements SalaryService {
         hospitalService.updateBudget("healthlife",allSalary);
     }
 
-    @Scheduled(cron = "0 0 4 28 * ?")
+//    @Scheduled(cron = "0 0 4 28 * ?")
     public void salaryAssistant() {
         List<Assistant> assistants = assistantService.getAllAssistant();
         Hospital hospital=hospitalService.getByName("healthlife");
@@ -51,7 +50,7 @@ public class SalaryServiceImpl implements SalaryService {
         BigDecimal newBudget=allSalary.subtract(BigDecimal.valueOf(salary.longValue()));
         hospitalService.updateBudget("healthlife",newBudget);
     }
-    @Scheduled(cron = "0 0 5 28 * ?")
+//    @Scheduled(cron = "0 0 5 28 * ?")
     public void salaryDoctor(){
         List<Doctor> doctors=doctorService.getAllDoctor();
         BigDecimal allSalary= hospitalService.getByName("healthlife").getBudget();

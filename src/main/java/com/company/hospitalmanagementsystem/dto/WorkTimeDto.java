@@ -8,7 +8,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UnWokrTimeDto {
+public class WorkTimeDto {
     private Long id;
     private List<String> times;
 }

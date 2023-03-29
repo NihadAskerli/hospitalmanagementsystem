@@ -15,19 +15,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/assistantPage")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")
 public class ForAssistantPageController {
 
     private final ObjectMapper objectMapper;
     private final ExaminationService examinationService;
     private final DoctorService doctorService;
    List<ForAssistantPageDto> forAssistantPageDtoList = new ArrayList<>();
+
 
 
     @GetMapping("/search")
@@ -49,7 +50,6 @@ public class ForAssistantPageController {
             forAssistantPageDto.setDoctorFinCode(doctor.getFinCode());
 
             forAssistantPageDtoList.add(forAssistantPageDto);
-
         }
         return ResponseEntity.ok(forAssistantPageDtoList);
     }

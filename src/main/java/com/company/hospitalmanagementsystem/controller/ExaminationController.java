@@ -21,7 +21,6 @@ import java.util.concurrent.Executors;
 @RestController
 @RequestMapping("/examination")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")
 public class ExaminationController {
     private final ObjectMapper objectMapper;
     public static List<Examination> checkExamination = new ArrayList<>();
@@ -37,7 +36,5 @@ public class ExaminationController {
         checkExamination.add(examination);
         return ResponseEntity.ok(check);
     }
-
-
 
 }

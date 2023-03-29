@@ -1,5 +1,7 @@
 package com.company.hospitalmanagementsystem.services.impl;
 
+import com.auth0.jwt.interfaces.DecodedJWT;
+import com.company.hospitalmanagementsystem.config.JWTToPrincipalConverter;
 import com.company.hospitalmanagementsystem.dto.QueueDto;
 import com.company.hospitalmanagementsystem.exception.PaymentException;
 import com.company.hospitalmanagementsystem.models.Examination;
@@ -34,11 +36,11 @@ public class QueueService {
 
     @Transactional
     public String queueSave(Examination examination, Payment payment) {
-        if (payment.getPay()!=null &&payment.getCardId()!=null && cardId.matcher(payment.getCardId()).matches() && payment.getCardId().length() == 16  && payment.getFinCode()!=null &&
-                payment.getFinCode().length() == 7
-                && payment.getPay().compareTo(BigDecimal.valueOf(doctorService.getByFinCode(examination.getDoctorFinCode()).getExaminationPay())) == 0) {
-            paymentRepository.save(payment);
+        if (payment.getPay()!=null && payment.getCardId()!=null && cardId.matcher(payment.getCardId()).matches() && payment.getCardId().length() == 16  && cardId.matcher(payment.getCVV()).matches() &&
+                 payment.getPay().compareTo(BigDecimal.valueOf(doctorService.getByFinCode(examination.getDoctorFinCode()).getExaminationPay())) == 0) {
+
             examinationRepository.save(examination);
+            paymentRepository.save(payment);
             return "Ödenişiniz uğurla yerine yetirildi";
         } else {
             try {

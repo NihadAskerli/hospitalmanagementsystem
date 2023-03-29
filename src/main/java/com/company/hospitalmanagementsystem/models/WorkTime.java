@@ -5,15 +5,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.DayOfWeek;
 import java.util.List;
 
 @Entity
-@Table(name = "unworktimes")
+@Table(name = "worktimes")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UnWorkTime {
+public class WorkTime {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_doctors")
     @SequenceGenerator(

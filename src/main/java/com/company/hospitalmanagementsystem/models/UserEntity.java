@@ -23,9 +23,12 @@ public class UserEntity {
             allocationSize = 1
     )
     private Long id;
+    private String name;
+    private String surname;
     @Column(unique = true)
     private String email;
     private String password;
+
     @ElementCollection
     private List<Role> role;
 }
