@@ -27,15 +27,12 @@ public class ForAssistantPageController {
     private final ObjectMapper objectMapper;
     private final ExaminationService examinationService;
     private final DoctorService doctorService;
-
-
-    List<ForAssistantPageDto> forAssistantPageDtoList = new ArrayList<>();
+   List<ForAssistantPageDto> forAssistantPageDtoList = new ArrayList<>();
 
 
 
     @GetMapping("/search")
     public ResponseEntity<List<ForAssistantPageDto>> getPatientByDoctor() throws JsonProcessingException {
-
 
         List<Examination> examinationList = examinationService.getAllByLocalDate();
 
@@ -53,7 +50,6 @@ public class ForAssistantPageController {
             forAssistantPageDto.setDoctorFinCode(doctor.getFinCode());
 
             forAssistantPageDtoList.add(forAssistantPageDto);
-
         }
         return ResponseEntity.ok(forAssistantPageDtoList);
     }

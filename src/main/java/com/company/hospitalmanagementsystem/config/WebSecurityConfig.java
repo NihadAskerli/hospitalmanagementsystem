@@ -43,6 +43,7 @@ public class WebSecurityConfig {
                         requestMatchers("/workTime/**").permitAll().
                         requestMatchers("/examination/**").permitAll().
                         requestMatchers("/queue/**").permitAll().
+                        requestMatchers("/userPage/**").permitAll().
                         requestMatchers("/assistantPage/search").hasRole("ASSISTANT").
                         anyRequest().authenticated());
 
