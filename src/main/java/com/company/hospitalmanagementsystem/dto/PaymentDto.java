@@ -15,7 +15,7 @@ import java.util.Date;
 public class PaymentDto {
 
     private String cardId;
-    private String CVV;
+    private String cardCode;
     private String endTime;
     private BigDecimal pay;
     private LocalDate date;
