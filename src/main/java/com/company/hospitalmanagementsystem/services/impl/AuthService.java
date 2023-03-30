@@ -2,6 +2,7 @@ package com.company.hospitalmanagementsystem.services.impl;
 
 
 
+
 import com.company.hospitalmanagementsystem.config.JWTIssuer;
 import com.company.hospitalmanagementsystem.config.UserPrinciple;
 import com.company.hospitalmanagementsystem.models.LoginResponse;
@@ -15,7 +16,6 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class AuthService {
-
     private final JWTIssuer jwtIssuer;
     private final AuthenticationManager authenticationManager;
     public LoginResponse loginResponse(String username, String password){
@@ -30,5 +30,4 @@ public class AuthService {
                 .accessToken(token)
                 .build();
     }
-
 }

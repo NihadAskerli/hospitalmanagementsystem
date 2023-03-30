@@ -13,15 +13,15 @@ import java.util.Optional;
 public class UserService {
 private final UserRepo userRepo;
     public Optional<UserEntity> findByEmail(String username){
-        if(userRepo.findByEmail(username)!=null) {
+        System.out.println(username);
+        if(!userRepo.findByEmail(username).isEmpty()) {
             return userRepo.findByEmail(username);
         }
         return Optional.empty();
 
     }
     public void saveUser(UserEntity user){
-        String userPassword=new BCryptPasswordEncoder().encode(user.getPassword());
-        user.setPassword(userPassword);
+        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         userRepo.save(user);
 
     }

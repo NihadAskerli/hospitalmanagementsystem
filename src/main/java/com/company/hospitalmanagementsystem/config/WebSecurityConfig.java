@@ -35,14 +35,12 @@ public class WebSecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().formLogin().disable()
                 .exceptionHandling().authenticationEntryPoint(unautharizedHandler).and()
                 .securityMatcher("/**")
-
                 .authorizeHttpRequests(registry -> registry.
-                        requestMatchers("/").permitAll().
                         requestMatchers("/auth/**").permitAll().
                         requestMatchers("/workTime/**").permitAll().
                         requestMatchers("/examination/**").permitAll().
                         requestMatchers("/queue/**").permitAll().
-                        requestMatchers("/doctor/**").hasRole("DOCTOR").
+                        requestMatchers("/doctor/**").permitAll().
                         requestMatchers("/assistant/**").hasRole("DOCTOR").
                         requestMatchers("/doctorPage/**").hasRole("DOCTOR").
                         requestMatchers("/userPage/userExaminations").hasRole("USER").
