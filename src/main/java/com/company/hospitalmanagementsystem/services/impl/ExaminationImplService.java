@@ -1,19 +1,14 @@
 package com.company.hospitalmanagementsystem.services.impl;
 
-import com.company.hospitalmanagementsystem.exception.PaymentException;
 import com.company.hospitalmanagementsystem.models.Examination;
-import com.company.hospitalmanagementsystem.models.Payment;
 import com.company.hospitalmanagementsystem.repo.ExaminationRepository;
 import com.company.hospitalmanagementsystem.services.inter.ExaminationService;
 import jakarta.persistence.EntityManager;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -27,6 +22,11 @@ public class ExaminationImplService implements ExaminationService {
     public void saveExamintaion(Examination examination) {
         examinationRepository.save(examination);
 
+    }
+
+    @Override
+    public List<Examination> getAll() {
+        return examinationRepository.findAll();
     }
 
     @Override
@@ -47,9 +47,9 @@ public class ExaminationImplService implements ExaminationService {
 
     @Override
     public List<Examination> getByDoctorFinCode(String finCode) {
-
-        return examinationRepository.getByDoctorFinCode(finCode);
+        return null;
     }
+
 
     @Override
     public List<Examination> getKeepExaminations(LocalDate localDate, String finCdoe) {
@@ -59,6 +59,11 @@ public class ExaminationImplService implements ExaminationService {
     @Override
     public List<Examination> getAllExaminationByRegisterEmail(String email) {
         return examinationRepository.getAllByRegisterEmail(email);
+    }
+
+    @Override
+    public List<Examination> getByLocalDateAndDoctorFinCode(LocalDate localDate, String finCode) {
+        return examinationRepository.getByLocalDateAndDoctorFinCode(localDate, finCode);
     }
 
 

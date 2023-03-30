@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class AssistantServiceImpl implements AssistantService{
+class AssistantServiceImpl implements AssistantService {
     private final AssistantRepository assistantRepository;
 
     @Override
@@ -19,9 +19,10 @@ public class AssistantServiceImpl implements AssistantService{
     }
 
     @Override
-    public Assistant getById(long id) {
-        return assistantRepository.findById(id).get();
+    public Assistant getByFinCode(String finCode) {
+        return assistantRepository.getByFinCode(finCode);
     }
+
 
     @Override
     public Assistant save(Assistant assistant) {
@@ -29,12 +30,14 @@ public class AssistantServiceImpl implements AssistantService{
     }
 
     @Override
-    public void delete(String id) {
-        assistantRepository.delete(assistantRepository.getAssistantByFinCode(id));
+    public void delete(String finCode) {
+        assistantRepository.delete(assistantRepository.getByFinCode(finCode));
     }
 
     @Override
-    public void updateCardId(String cardId, String finCode) {
-        assistantRepository.updateReservation(cardId, finCode);
+    public void update(String finCode, Assistant assistant) {
+        assistantRepository.updateAssistant(finCode, assistant.getCardId());
     }
+
+
 }
