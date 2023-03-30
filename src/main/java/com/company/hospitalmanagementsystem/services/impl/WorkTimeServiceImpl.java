@@ -29,9 +29,11 @@ public class WorkTimeServiceImpl implements WorkTimeService {
         List<String> times=new ArrayList<>();
         List<Examination> examinations=examinationImplService.getKeepExaminations(examination.getLocalDate(),examination.getDoctorFinCode());
         for (Examination keepExamination:
-             examinations) {
+                examinations) {
             times.add(keepExamination.getTime());
         }
         return times;
     }
 }
+
+

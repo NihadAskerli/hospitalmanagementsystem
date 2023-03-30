@@ -21,9 +21,7 @@ public class DoctorDto {
     private String surname;
     private String finCode;
     private String unWorking;
-
     private Department department;
-
     private Photo photo;
 
 //    private Hospital hospital;

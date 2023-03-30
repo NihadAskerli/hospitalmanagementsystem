@@ -10,12 +10,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,8 +23,7 @@ public class ForAssistantPageController {
     private final ObjectMapper objectMapper;
     private final ExaminationService examinationService;
     private final DoctorService doctorService;
-   List<ForAssistantPageDto> forAssistantPageDtoList = new ArrayList<>();
-
+    List<ForAssistantPageDto> forAssistantPageDtoList = new ArrayList<>();
 
 
     @GetMapping("/search")
@@ -53,4 +48,5 @@ public class ForAssistantPageController {
         }
         return ResponseEntity.ok(forAssistantPageDtoList);
     }
+
 }

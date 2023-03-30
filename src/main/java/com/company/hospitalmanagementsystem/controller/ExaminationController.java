@@ -23,7 +23,6 @@ public class ExaminationController {
     private final QueueService queueService;
     private final WorkTimeServiceImpl workTimeService;
 
-
     @PostMapping("/check")
     public ResponseEntity<String> checkTime(@RequestBody String check) throws JsonProcessingException, ParseException {
         ExaminationDto examinationDto = objectMapper.readValue(check, ExaminationDto.class);

@@ -14,9 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-@RequiredArgsConstructor
 public class JWTToPrincipalConverter {
-    private final ExaminationImplService examinationImplService;
     public UserPrinciple convert(DecodedJWT jwt){
 
         return UserPrinciple.builder()

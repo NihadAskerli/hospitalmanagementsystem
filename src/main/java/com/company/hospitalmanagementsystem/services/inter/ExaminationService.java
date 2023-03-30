@@ -9,6 +9,8 @@ public interface ExaminationService {
 
     void saveExamintaion(Examination examintaion);
 
+    List<Examination> getAll();
+
     List<Examination> getAllByLocalDate();
 
     List<Examination> getAllByFinCode(String finCode);
@@ -21,5 +23,6 @@ public interface ExaminationService {
     List<Examination> getAllExaminationByRegisterEmail(String email);
 
 
+    List<Examination> getByLocalDateAndDoctorFinCode(LocalDate localDate, String finCode);
 }
 

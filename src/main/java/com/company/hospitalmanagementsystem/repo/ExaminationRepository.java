@@ -10,10 +10,11 @@ import java.util.List;
 
 public interface ExaminationRepository extends JpaRepository<Examination, Long> {
 
+
     List<Examination> getAllByLocalDate(LocalDate localDate);
 
     List<Examination> getAllByDoctorFinCode(String doctorFinCode);
-List<Examination> getAllByRegisterEmail(String registerEmail);
+    List<Examination> getAllByRegisterEmail(String registerEmail);
     void deleteAllByDoctorFinCode(String finCode);
 
     List<Examination> getByDoctorFinCode( String doctorFinCode);

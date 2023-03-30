@@ -1,17 +1,18 @@
 package com.company.hospitalmanagementsystem.services.inter;
 
 import com.company.hospitalmanagementsystem.models.Assistant;
+import org.joda.time.field.StrictDateTimeField;
 
 import java.util.List;
 
 public interface AssistantService {
     List<Assistant> getAllAssistant();
 
-    Assistant getById(long id);
+    Assistant getByFinCode(String finCode);
 
     Assistant save(Assistant assistant);
 
-    void delete(String id);
+    void delete(String finCode);
 
-    void updateCardId(String cardId,String finCode);
+    void update(String finCode,Assistant assistant);
 }
