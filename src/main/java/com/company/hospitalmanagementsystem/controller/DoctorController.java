@@ -44,13 +44,13 @@ public class DoctorController {
 
     }
 
-    @DeleteMapping("/{finCode}")
+    @DeleteMapping("/delete/{finCode}")
     public void delete(@PathVariable String finCode) {
         doctorService.delete(finCode);
     }
 
 
-    @PutMapping("/{finCode}")
+    @PutMapping("/update/{finCode}")
     public void update(@PathVariable String finCode, @RequestBody String doctor) throws JsonProcessingException {
 
         DoctorDto doctorDto = objectMapper.readValue(doctor, DoctorDto.class);

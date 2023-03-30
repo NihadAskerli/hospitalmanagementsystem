@@ -39,11 +39,12 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(registry -> registry.
                         requestMatchers("/").permitAll().
                         requestMatchers("/auth/**").permitAll().
-                        requestMatchers("/doctor/**").permitAll().
                         requestMatchers("/workTime/**").permitAll().
                         requestMatchers("/examination/**").permitAll().
                         requestMatchers("/queue/**").permitAll().
-                        requestMatchers("/userPage/**").permitAll().
+                        requestMatchers("/doctor/**").hasRole("DOCTOR").
+                        requestMatchers("/assistant/**").hasRole("DOCTOR").
+                        requestMatchers("/doctorPage/**").hasRole("DOCTOR").
                         requestMatchers("/assistantPage/search").hasRole("ASSISTANT").
                         anyRequest().authenticated());
 
