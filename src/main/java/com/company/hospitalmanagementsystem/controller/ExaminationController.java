@@ -26,7 +26,6 @@ public class ExaminationController {
     public static List<Examination> checkExamination = new ArrayList<>();
     private final QueueService queueService;
 
-
     @PostMapping("/check")
     public ResponseEntity<String> checkTime(@RequestBody String check) throws JsonProcessingException, ParseException {
         ExaminationDto examinationDto = objectMapper.readValue(check, ExaminationDto.class);

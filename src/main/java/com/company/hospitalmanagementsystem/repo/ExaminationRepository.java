@@ -14,9 +14,11 @@ public interface ExaminationRepository extends JpaRepository<Examination, Long> 
 
     List<Examination> getAllByDoctorFinCode(String doctorFinCode);
 
+    List<Examination> getAllByRegisterEmail(String registerEmail);
+
     void deleteAllByDoctorFinCode(String finCode);
 
-    List<Examination> getByDoctorFinCode( String doctorFinCode);
+    List<Examination> getByDoctorFinCode(String doctorFinCode);
 
     List<Examination> getByLocalDateAndDoctorFinCode(LocalDate localDate, String doctorFinCode);
 

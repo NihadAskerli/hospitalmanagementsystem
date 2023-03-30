@@ -1,9 +1,5 @@
 package com.company.hospitalmanagementsystem.controller;
 
-import com.auth0.jwt.interfaces.DecodedJWT;
-import com.company.hospitalmanagementsystem.config.JWTAuthenticationFilter;
-import com.company.hospitalmanagementsystem.config.JWTToPrincipalConverter;
-import com.company.hospitalmanagementsystem.config.UserPrinciple;
 import com.company.hospitalmanagementsystem.dto.DoctorDto;
 import com.company.hospitalmanagementsystem.models.Doctor;
 import com.company.hospitalmanagementsystem.services.impl.DoctorServiceImpl;
@@ -13,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -54,7 +49,6 @@ public class DoctorController {
     public void update(@PathVariable String finCode, @RequestBody String doctor) throws JsonProcessingException {
 
         DoctorDto doctorDto = objectMapper.readValue(doctor, DoctorDto.class);
-
         doctorService.update(finCode, objectMapper
                 .convertValue(doctorDto, Doctor.class));
 
