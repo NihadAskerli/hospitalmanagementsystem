@@ -17,7 +17,6 @@ import java.util.List;
 public class ExaminationImplService implements ExaminationService {
 
     private final ExaminationRepository examinationRepository;
-    private final EntityManager entityManager;
 
     @Override
     public void saveExamintaion(Examination examination) {
@@ -58,15 +57,16 @@ public class ExaminationImplService implements ExaminationService {
     }
 
     @Override
-    public Examination getUserByNameAndSurname(String name, String surname) {
-        return examinationRepository.getUserByNameAndSurname(name, surname);
-
+    public List<Examination> getAllExaminationByRegisterEmail(String email) {
+        return examinationRepository.getAllByRegisterEmail(email);
     }
 
     @Override
     public List<Examination> getByLocalDateAndDoctorFinCode(LocalDate localDate, String finCode) {
         return examinationRepository.getByLocalDateAndDoctorFinCode(localDate, finCode);
     }
+
+
 
 
 }

@@ -45,6 +45,7 @@ public class WebSecurityConfig {
                         requestMatchers("/doctor/**").hasRole("DOCTOR").
                         requestMatchers("/assistant/**").hasRole("DOCTOR").
                         requestMatchers("/doctorPage/**").hasRole("DOCTOR").
+                        requestMatchers("/userPage/userExaminations").hasRole("USER").
                         requestMatchers("/assistantPage/search").hasRole("ASSISTANT").
                         anyRequest().authenticated());
 

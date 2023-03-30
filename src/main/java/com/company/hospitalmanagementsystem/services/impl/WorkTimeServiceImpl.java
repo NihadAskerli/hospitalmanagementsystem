@@ -15,10 +15,24 @@ import java.util.List;
 public class WorkTimeServiceImpl implements WorkTimeService {
     private final WorkTimeRepository unWorkTimeRepository;
     private final ExaminationImplService examinationImplService;
-
     @Override
     public WorkTime getByDoctorFinCodeAndLocalDate(String finCode, String week) {
-        return unWorkTimeRepository.getByDoctorFinCodeAndAndWeekOfDay(finCode, week);
+        return unWorkTimeRepository.getByDoctorFinCodeAndAndWeekOfDay(finCode,week);
+    }
+
+    @Override
+    public WorkTime getByDoctorFinCode(String finCode) {
+        return unWorkTimeRepository.getByDoctorFinCode(finCode);
+    }
+
+    public List<String> keepTimes(Examination examination){
+        List<String> times=new ArrayList<>();
+        List<Examination> examinations=examinationImplService.getKeepExaminations(examination.getLocalDate(),examination.getDoctorFinCode());
+        for (Examination keepExamination:
+                examinations) {
+            times.add(keepExamination.getTime());
+        }
+        return times;
     }
 }
 

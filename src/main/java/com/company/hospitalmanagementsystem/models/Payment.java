@@ -22,7 +22,7 @@ public class Payment {
     )
     private Long id;
     private String cardId;
-    private String CVV;
+    private String cardCode;
     private String endTime;
     private BigDecimal pay;
     private LocalDate date;

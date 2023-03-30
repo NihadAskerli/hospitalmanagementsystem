@@ -9,5 +9,5 @@ import java.util.List;
 
 public interface WorkTimeRepository extends JpaRepository<WorkTime,Long> {
     WorkTime getByDoctorFinCodeAndAndWeekOfDay(String doctorFinCode, String dayOfWeek);
-
+    WorkTime getByDoctorFinCode(String doctorFinCode);
 }
