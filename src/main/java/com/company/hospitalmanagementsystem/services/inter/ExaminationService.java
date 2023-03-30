@@ -18,8 +18,8 @@ public interface ExaminationService {
     List<Examination> getByDoctorFinCode(String finCode);
 
     List<Examination> getKeepExaminations(LocalDate localDate, String finCode);
+    List<Examination> getAllExaminationByRegisterEmail(String email);
 
-    Examination getUserByNameAndSurname(String name, String surname);
 
 }
 

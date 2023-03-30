@@ -15,6 +15,6 @@ public class UserPageDto {
     private String surname;
     private String doctorName;
     private String doctorSurname;
-    private String pastTreatment;
     private LocalDate localDate;
+    private String time;
 }

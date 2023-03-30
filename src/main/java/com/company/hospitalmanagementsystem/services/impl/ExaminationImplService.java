@@ -57,10 +57,11 @@ public class ExaminationImplService implements ExaminationService {
     }
 
     @Override
-    public Examination getUserByNameAndSurname(String name, String surname) {
-        return examinationRepository.getUserByNameAndSurname(name, surname);
-
+    public List<Examination> getAllExaminationByRegisterEmail(String email) {
+        return examinationRepository.getAllByRegisterEmail(email);
     }
+
+
 
 
 }

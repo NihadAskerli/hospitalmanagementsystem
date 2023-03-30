@@ -27,11 +27,11 @@ public class WorkTimeController {
         Examination examination = ExaminationController.checkExamination.get(0);
         List<String> times = unWorkTimeService.getByDoctorFinCodeAndLocalDate(examination.getDoctorFinCode(), examination.getLocalDate().getDayOfWeek().toString()).getTimes();
         times.removeAll(unWorkTimeService.keepTimes(examination));
-        WorkTimeDto unWokrTimeDto=new WorkTimeDto();
-        unWokrTimeDto.setId(1l);
-        unWokrTimeDto.setTimes(times);
+        WorkTimeDto wokrTimeDto=new WorkTimeDto();
+        wokrTimeDto.setId(1l);
+        wokrTimeDto.setTimes(times);
         examinationController.checkExamination.remove(examinationController.checkExamination.get(0));
-        return ResponseEntity.ok(unWokrTimeDto);
+        return ResponseEntity.ok(wokrTimeDto);
     }
 
 }
