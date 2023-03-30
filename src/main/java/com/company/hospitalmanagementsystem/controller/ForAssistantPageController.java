@@ -38,6 +38,7 @@ public class ForAssistantPageController {
 
             forAssistantPageDto.setName(examination.getName());
             forAssistantPageDto.setSurname(examination.getSurname());
+            forAssistantPageDto.setPastTreatment(examination.getPastTreatment());
             forAssistantPageDto.setLocalDate(examination.getLocalDate());
             forAssistantPageDto.setTime(examination.getTime());
             forAssistantPageDto.setDoctorName(doctor.getName());
