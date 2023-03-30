@@ -35,9 +35,7 @@ public class WebSecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().formLogin().disable()
                 .exceptionHandling().authenticationEntryPoint(unautharizedHandler).and()
                 .securityMatcher("/**")
-
                 .authorizeHttpRequests(registry -> registry.
-                        requestMatchers("/").permitAll().
                         requestMatchers("/auth/**").permitAll().
                         requestMatchers("/doctor/**").permitAll().
                         requestMatchers("/workTime/**").permitAll().
