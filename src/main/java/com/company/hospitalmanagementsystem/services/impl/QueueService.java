@@ -41,13 +41,13 @@ public class QueueService {
 
             examinationRepository.save(examination);
             paymentRepository.save(payment);
-            return "Ödenişiniz uğurla yerine yetirildi";
+            return "Odenisiniz ugurla yerine yetirildi";
         } else {
             try {
                 throw new PaymentException(" verilenleri duzgun daxil edin: ", "112");
             } catch (PaymentException e) {
 
-                String errorMessage = "Ödeme zamanı xəta oluşdu: " + e.getMessage();
+                String errorMessage = "Odeme zamani xeta oluşdu: " + e.getMessage();
 
                 logger.error(errorMessage, e.getMessage());
                 return errorMessage;
