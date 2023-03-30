@@ -41,10 +41,10 @@ public class WebSecurityConfig {
                         requestMatchers("/examination/**").permitAll().
                         requestMatchers("/queue/**").permitAll().
                         requestMatchers("/doctor/**").permitAll().
-                        requestMatchers("/assistant/**").hasRole("DOCTOR").
-                        requestMatchers("/doctorPage/**").hasRole("DOCTOR").
+                        requestMatchers("/assistant/**").hasRole("SUPERVISOR").
+                        requestMatchers("/doctorPage/**").hasRole("SUPERVISOR").
                         requestMatchers("/userPage/userExaminations").hasRole("USER").
-                        requestMatchers("/assistantPage/search").hasRole("ASSISTANT").
+                        requestMatchers("/assistantPage/search").hasRole("ADMIN").
                         anyRequest().authenticated());
 
         return http.build();

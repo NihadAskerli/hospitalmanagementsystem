@@ -59,10 +59,10 @@ private final TokenListener tokenListener;
         }else {
             List<Role> roleList = new ArrayList<>();
             if (userEntity.getEmail().startsWith("doctor")) {
-                roleList.add(Role.ROLE_DOCTOR);
-                roleList.add(Role.ROLE_ASSISTANT);
+                roleList.add(Role.ROLE_SUPERVISOR);
+                roleList.add(Role.ROLE_ADMIN);
             } else if (userEntity.getEmail().startsWith("assistant")) {
-                roleList.add(Role.ROLE_ASSISTANT);
+                roleList.add(Role.ROLE_ADMIN);
             } else {
                 roleList.add(Role.ROLE_USER);
             }
