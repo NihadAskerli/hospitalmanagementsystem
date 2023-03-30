@@ -45,7 +45,7 @@ private final TokenListener tokenListener;
             roles.add(role.name());
         }
         roleDto.setRoles(roles);
-        roleDto.setToken(authService.loginResponse(loginRequest.getEmail(),loginRequest.getPassword()).getAccessToken());
+        roleDto.setToken(authService.loginResponse(loginRequest.getEmail(),loginRequest.getPassword()));
         return ResponseEntity.ok(roleDto);
     }
 

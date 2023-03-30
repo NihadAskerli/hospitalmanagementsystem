@@ -1,5 +1,6 @@
 package com.company.hospitalmanagementsystem.dto;
 
+import com.company.hospitalmanagementsystem.models.LoginResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,5 +12,5 @@ import java.util.List;
 public class RoleDto {
     private Long id;
     private List<String> roles;
-    private String token;
+    private LoginResponse token;
 }
