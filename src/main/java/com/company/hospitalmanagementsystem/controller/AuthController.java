@@ -34,7 +34,8 @@ private final TokenListener tokenListener;
     private final ObjectMapper objectMapper;
 
     @PostMapping("/login")
-    public ResponseEntity<RoleDto> login(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<RoleDto> login(@RequestBody String request) throws JsonProcessingException {
+        LoginRequest loginRequest=objectMapper.readValue(request, LoginRequest.class);
         RoleDto roleDto = new RoleDto();
         roleDto.setId(1l);
         List<Role> roleList=userService.findByEmail(loginRequest.getEmail()).get().getRole();
@@ -51,7 +52,6 @@ private final TokenListener tokenListener;
 
     @PostMapping("/register")
     public ResponseDto register(@RequestBody String register) throws JsonProcessingException {
-        LoginRequest loginRequest = objectMapper.readValue(register, LoginRequest.class);
         UserDto userDto = objectMapper.readValue(register, UserDto.class);
         UserEntity userEntity = objectMapper.convertValue(userDto, UserEntity.class);
         if(!userEntity.getEmail().contains("@")){
