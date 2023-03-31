@@ -9,6 +9,7 @@ import com.company.hospitalmanagementsystem.services.inter.AssistantService;
 import com.company.hospitalmanagementsystem.services.inter.DoctorService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +36,9 @@ public class ForDoctorPageController {
     }
 
     @GetMapping("/all/assistant")
-    public ResponseEntity<List> getAllAssistant() {
+    public ResponseEntity<List> getAllAssistant(HttpServletRequest httpServletRequest) {
+        String token=httpServletRequest.getHeader("Authorization");
+        System.out.println(token);
 
         List<Assistant> assistants = assistantService.getAllAssistant();
 
