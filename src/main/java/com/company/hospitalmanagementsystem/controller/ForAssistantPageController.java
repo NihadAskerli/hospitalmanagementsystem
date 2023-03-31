@@ -23,13 +23,13 @@ public class ForAssistantPageController {
     private final ObjectMapper objectMapper;
     private final ExaminationService examinationService;
     private final DoctorService doctorService;
-    List<ForAssistantPageDto> forAssistantPageDtoList = new ArrayList<>();
 
 
     @GetMapping("/search")
     public ResponseEntity<List<ForAssistantPageDto>> getPatientByDoctor() throws JsonProcessingException {
 
         List<Examination> examinationList = examinationService.getAllByLocalDate();
+        List<ForAssistantPageDto> forAssistantPageDtoList = new ArrayList<>();
 
         for (Examination examination : examinationList) {
 
